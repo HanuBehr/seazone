@@ -4,12 +4,13 @@ import { z } from "zod";
 
 import { buildChatSystemPrompt } from "@/lib/ai/prompts";
 import { getExperienceGuideForProperty } from "@/server/experience-guides";
-import { getPropertyByCode } from "@/server/properties";
+import { authorizeGuestGuideAccess } from "@/server/guest-access";
 
 export const runtime = "nodejs";
 
 const chatRequestSchema = z.object({
   propertyCode: z.string().min(1),
+  guideAccessCode: z.string().min(1),
   messages: z.array(
     z.object({
       role: z.enum(["user", "assistant"]),
@@ -32,11 +33,16 @@ export async function POST(request: Request) {
     return Response.json({ error: "Mensagem inválida." }, { status: 400 });
   }
 
-  const property = await getPropertyByCode(body.data.propertyCode);
+  const access = await authorizeGuestGuideAccess(
+    body.data.propertyCode,
+    body.data.guideAccessCode,
+  );
 
-  if (!property) {
-    return Response.json({ error: "Imóvel não encontrado." }, { status: 404 });
+  if (!access) {
+    return Response.json({ error: "Guia não autorizado." }, { status: 403 });
   }
+
+  const { property } = access;
 
   const guide = await getExperienceGuideForProperty(property.id);
 

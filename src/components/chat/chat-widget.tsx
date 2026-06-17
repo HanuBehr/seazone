@@ -15,7 +15,13 @@ const suggestions = [
   "Que restaurantes tem perto?",
 ];
 
-export function ChatWidget({ propertyCode }: { propertyCode: string }) {
+export function ChatWidget({
+  propertyCode,
+  guideAccessCode,
+}: {
+  propertyCode: string;
+  guideAccessCode: string;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -45,7 +51,7 @@ export function ChatWidget({ propertyCode }: { propertyCode: string }) {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ propertyCode, messages: nextMessages }),
+        body: JSON.stringify({ propertyCode, guideAccessCode, messages: nextMessages }),
       });
 
       if (!response.ok || !response.body) {

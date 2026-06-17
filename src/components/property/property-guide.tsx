@@ -30,9 +30,11 @@ import type { Property } from "@/lib/validators/property";
 export function PropertyGuide({
   property,
   guide,
+  guideAccessCode,
 }: {
   property: Property;
   guide: ExperienceGuide | null;
+  guideAccessCode: string;
 }) {
   const amenities = getEnabledAmenities(property);
   const whatsappUrl = `https://wa.me/${formatPhoneForWhatsApp(property.host.phone)}`;
@@ -186,6 +188,7 @@ export function PropertyGuide({
           <ExperienceGuideSection
             propertyCode={property.code}
             initialGuide={guide}
+            guideAccessCode={guideAccessCode}
           />
         </div>
 
@@ -234,7 +237,7 @@ export function PropertyGuide({
         </aside>
       </div>
 
-      <ChatWidget propertyCode={property.code} />
+      <ChatWidget propertyCode={property.code} guideAccessCode={guideAccessCode} />
     </main>
   );
 }
