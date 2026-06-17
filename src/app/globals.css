@@ -14,6 +14,10 @@
   --color-border: #e3e8ee;
   --color-text: #082b44;
   --color-muted: #5e7185;
+  --color-success-soft: #eaf8f1;
+  --color-warning-soft: #fff4e6;
+  --shadow-surface: 0 18px 48px rgba(6, 43, 69, 0.07);
+  --radius-surface: 1.5rem;
 }
 
 @theme inline {
@@ -30,8 +34,8 @@ body {
 }
 
 ::selection {
-  background: rgba(16, 182, 214, 0.25);
-  color: var(--seazone-navy);
+  background: rgba(255, 107, 95, 0.22);
+  color: var(--color-navy-strong);
 }
 
 button,
@@ -43,7 +47,8 @@ textarea {
 
 .seazone-shell {
   background:
-    radial-gradient(circle at 12% 12%, rgba(234, 248, 251, 0.9), transparent 26rem),
+    radial-gradient(circle at 10% 8%, rgba(234, 248, 251, 0.7), transparent 23rem),
+    radial-gradient(circle at 92% 14%, rgba(255, 244, 230, 0.68), transparent 21rem),
     linear-gradient(135deg, var(--color-bg) 0%, var(--color-sand) 100%);
 }
 
@@ -55,5 +60,5 @@ textarea {
 }
 
 .seazone-card-shadow {
-  box-shadow: 0 18px 60px rgba(6, 36, 61, 0.1);
+  box-shadow: var(--shadow-surface);
 }

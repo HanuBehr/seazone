@@ -1,24 +1,27 @@
 import Link from "next/link";
 
+import { SeazoneLogo } from "@/components/brand/seazone-logo";
+
 export default function PropertyNotFound() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#f7fbfc] px-6 py-12 text-slate-900">
-      <section className="max-w-xl rounded-[2rem] border border-cyan-100 bg-white p-8 text-center shadow-sm">
-        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-700">
-          Guia não encontrado
+    <main className="seazone-shell flex min-h-screen items-center justify-center px-5 py-10 text-[var(--color-text)] sm:px-8">
+      <section className="w-full max-w-xl rounded-[var(--radius-surface)] border border-[var(--color-border)] bg-white p-6 shadow-[var(--shadow-surface)] sm:p-8">
+        <SeazoneLogo />
+        <p className="mt-8 text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-coral)]">
+          Código não encontrado
         </p>
-        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
+        <h1 className="mt-3 text-3xl font-semibold tracking-[-0.035em] text-[var(--color-navy)]">
           Não encontramos um imóvel com este código.
         </h1>
-        <p className="mt-4 leading-7 text-slate-600">
-          Confira se o link recebido está correto. Se o problema continuar,
-          entre em contato com o anfitrião ou com a central da Seazone.
+        <p className="mt-4 leading-7 text-[var(--color-muted)]">
+          Confira o código na reserva ou no QR Code do imóvel. Se o problema
+          continuar, entre em contato com o anfitrião ou com a central da Seazone.
         </p>
         <Link
           href="/"
-          className="mt-6 inline-flex rounded-full bg-cyan-700 px-5 py-3 font-semibold text-white transition hover:bg-cyan-800"
+          className="mt-6 inline-flex rounded-2xl bg-[var(--color-coral)] px-5 py-3 font-semibold text-white transition hover:bg-[var(--color-coral-hover)] focus:ring-4 focus:ring-[rgba(255,107,95,0.25)] focus:outline-none"
         >
-          Voltar ao início
+          Tentar outro código
         </Link>
       </section>
     </main>
