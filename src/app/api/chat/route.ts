@@ -62,7 +62,7 @@ function buildFallbackAnswer(
   const normalized = message.toLowerCase();
 
   if (normalized.includes("guia")) {
-    return `Claro. O guia completo deste imóvel está em /${property.code}/guia.`;
+    return "Claro. Use o botão Ver guia completo da estadia para abrir todas as informações organizadas.";
   }
 
   if (normalized.includes("wifi") || normalized.includes("wi-fi") || normalized.includes("senha")) {
@@ -86,17 +86,17 @@ function buildFallbackAnswer(
         .map((restaurant) => `${restaurant.name} (${restaurant.distance})`)
         .join(", ");
 
-      return `Perto de você tem ${restaurants}. Veja mais detalhes no guia completo: /${property.code}/guia.`;
+      return `Perto de você tem ${restaurants}. Para ver mais detalhes, use o botão Ver guia completo da estadia.`;
     }
 
-    return `Ainda não tenho restaurantes gerados para este imóvel. Você pode abrir o guia completo em /${property.code}/guia para gerar as recomendações locais.`;
+    return "Ainda não tenho restaurantes gerados para este imóvel. Você pode abrir o guia completo da estadia para gerar as recomendações locais.";
   }
 
   if (normalized.includes("telefone") || normalized.includes("anfitri") || normalized.includes("contato")) {
     return `O anfitrião é ${property.host.name}. O telefone é ${property.host.phone}.`;
   }
 
-  return `Posso te ajudar com WiFi, acesso ao imóvel, regras da estadia, contato do anfitrião e recomendações próximas. Se preferir, abra o guia completo em /${property.code}/guia.`;
+  return "Posso te ajudar com WiFi, acesso ao imóvel, regras da estadia, contato do anfitrião e recomendações próximas. Se preferir, use o botão Ver guia completo da estadia.";
 }
 
 function streamPlainText(text: string) {

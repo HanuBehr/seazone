@@ -1,8 +1,16 @@
 "use client";
 
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { FormEvent, useRef, useState } from "react";
-import { Bot, CalendarClock, ExternalLink, MapPin, Send, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Bot,
+  CalendarClock,
+  ExternalLink,
+  MapPin,
+  Send,
+} from "lucide-react";
 
 import { SeazoneLogo } from "@/components/brand/seazone-logo";
 import { formatHour } from "@/lib/format";
@@ -14,17 +22,18 @@ type ChatMessage = {
 };
 
 const suggestions = [
-  "Qual a senha do WiFi?",
-  "Como eu entro no imóvel?",
+  "Qual é a senha do Wi-Fi?",
+  "Como entro no imóvel?",
+  "Quais são as regras da casa?",
+  "Que horas é o check-out?",
   "Posso trazer meu cachorro?",
-  "Me envie o guia completo",
 ];
 
 export function PropertyAssistant({ property }: { property: Property }) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
-      content: `Oi, aqui é o César da Seazone. Como posso te ajudar na sua estadia no imóvel ${property.code}? Se quiser ver tudo organizado, acesse o guia completo em /${property.code}/guia.`,
+      content: `Encontrei sua estadia no imóvel ${property.code}. Você pode abrir o guia completo ou me perguntar qualquer coisa sobre acesso, Wi-Fi, check-in e regras da casa.`,
     },
   ]);
   const [input, setInput] = useState("");
@@ -89,34 +98,30 @@ export function PropertyAssistant({ property }: { property: Property }) {
   }
 
   return (
-    <main className="seazone-shell relative min-h-screen overflow-hidden px-4 py-5 text-slate-900 sm:px-8 lg:px-10">
-      <div className="pointer-events-none absolute -top-20 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-[#10b6d6]/20 blur-3xl" />
-      <div className="pointer-events-none absolute right-0 bottom-0 h-96 w-96 rounded-full bg-[#ff8a1c]/20 blur-3xl" />
-
-      <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between pb-5">
+    <main className="seazone-shell min-h-screen px-4 py-5 text-slate-900 sm:px-8 lg:px-10">
+      <header className="mx-auto flex max-w-6xl items-center justify-between gap-4 pb-5">
         <SeazoneLogo />
         <Link
           href={`/${property.code}/guia`}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-[#06243d] px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-slate-900/15 transition hover:-translate-y-0.5 hover:bg-[#0067b1]"
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-[#06243d] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0b3558] focus:ring-4 focus:ring-[#10b6d6]/20 focus:outline-none"
         >
           Guia completo
-          <ExternalLink className="h-4 w-4" />
+          <ExternalLink className="h-4 w-4" aria-hidden />
         </Link>
       </header>
 
-      <section className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] max-w-7xl items-center gap-6 lg:grid-cols-[0.82fr_1.18fr]">
-        <aside className="space-y-5">
-          <div className="seazone-glass rounded-[2rem] p-6 sm:p-8">
-            <div className="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-4 py-2 text-sm font-semibold text-[#0067b1]">
-              <Sparkles className="h-4 w-4" />
+      <section className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+        <aside className="space-y-4 lg:pt-6">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#0067b1]">
               Assistente conectado ao imóvel
-            </div>
-            <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-[-0.04em] text-[#06243d] sm:text-5xl">
+            </p>
+            <h1 className="mt-4 text-[clamp(2.35rem,4vw,3.75rem)] font-semibold leading-tight tracking-[-0.045em] text-[#06243d]">
               Oi, aqui é o César da Seazone.
             </h1>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
-              Como posso te ajudar na estadia em {property.name}? Posso responder
-              sobre acesso, WiFi, regras, contato e experiências próximas.
+            <p className="mt-4 max-w-xl text-base leading-7 text-slate-600">
+              Encontrei sua estadia em {property.name}. Posso ajudar com acesso,
+              Wi-Fi, check-in, regras da casa e dicas próximas.
             </p>
           </div>
 
@@ -136,65 +141,71 @@ export function PropertyAssistant({ property }: { property: Property }) {
           </div>
         </aside>
 
-        <section className="flex h-[min(820px,calc(100vh-7rem))] min-h-[640px] flex-col overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-2xl shadow-slate-900/10">
-          <div className="border-b border-slate-100 bg-[#06243d] p-5 text-white sm:p-6">
-            <div className="flex items-center gap-4">
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#ff8a1c] text-white shadow-lg shadow-orange-500/25">
-                <Bot className="h-7 w-7" />
+        <section className="flex min-h-[620px] flex-col overflow-hidden rounded-[1.75rem] border border-white bg-white shadow-[0_24px_70px_rgba(6,36,61,0.12)] lg:h-[calc(100vh-7rem)] lg:max-h-[760px]">
+          <div className="bg-[#06243d] px-5 py-4 text-white sm:px-6">
+            <div className="flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#ff8a1c] text-white">
+                <Bot className="h-6 w-6" aria-hidden />
               </span>
               <div>
-                <p className="text-sm text-cyan-100">César da Seazone</p>
-                <h2 className="text-xl font-semibold tracking-tight">
-                  Atendimento da sua estadia
-                </h2>
+                <p className="font-semibold">César da Seazone</p>
+                <p className="text-sm text-cyan-100">Atendimento da sua estadia</p>
               </div>
             </div>
           </div>
 
-          <div className="flex-1 space-y-4 overflow-y-auto bg-gradient-to-b from-[#f8fdff] to-white p-4 sm:p-6">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={
-                  message.role === "user"
-                    ? "ml-auto max-w-[86%] rounded-[1.4rem] rounded-br-md bg-[#0067b1] px-5 py-3 text-sm leading-6 text-white shadow-lg shadow-blue-900/10"
-                    : "mr-auto max-w-[86%] rounded-[1.4rem] rounded-bl-md border border-cyan-50 bg-white px-5 py-3 text-sm leading-6 text-slate-700 shadow-sm"
-                }
-              >
-                {message.content || "..."}
-              </div>
-            ))}
+          <div className="flex-1 overflow-y-auto bg-[#fbf8f2] p-4 sm:p-5">
+            <div className="space-y-4">
+              {messages.map((message, index) => (
+                <MessageRow key={index} message={message}>
+                  {index === 0 ? (
+                    <>
+                      <GuideCallout propertyCode={property.code} />
+                      <div className="space-y-3">
+                        <p className="text-sm font-semibold text-[#06243d]">
+                          Ou escolha uma pergunta rápida:
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {suggestions.map((suggestion) => (
+                            <button
+                              type="button"
+                              key={suggestion}
+                              onClick={() => sendMessage(suggestion)}
+                              disabled={isStreaming}
+                              className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:border-[#0067b1]/30 hover:text-[#0067b1] focus:ring-4 focus:ring-[#10b6d6]/15 focus:outline-none disabled:cursor-not-allowed disabled:opacity-60"
+                            >
+                              {suggestion}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  ) : null}
+                </MessageRow>
+              ))}
+            </div>
           </div>
 
           <footer className="border-t border-slate-100 bg-white p-4 sm:p-5">
-            <div className="mb-3 flex gap-2 overflow-x-auto pb-1">
-              {suggestions.map((suggestion) => (
-                <button
-                  type="button"
-                  key={suggestion}
-                  onClick={() => sendMessage(suggestion)}
-                  disabled={isStreaming}
-                  className="shrink-0 rounded-full border border-cyan-100 bg-cyan-50 px-3 py-2 text-xs font-semibold text-[#0067b1] transition hover:border-[#0067b1]/30 hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {suggestion}
-                </button>
-              ))}
-            </div>
             <form onSubmit={handleSubmit} className="flex gap-2">
+              <label htmlFor="guest-question" className="sr-only">
+                Pergunte sobre sua estadia
+              </label>
               <input
+                id="guest-question"
                 ref={inputRef}
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 placeholder="Pergunte sobre sua estadia"
-                className="min-w-0 flex-1 rounded-full border border-slate-200 bg-[#f7fbfc] px-5 py-3 text-sm outline-none transition focus:border-[#0067b1] focus:bg-white"
+                className="min-w-0 flex-1 rounded-2xl border border-slate-200 bg-[#fbf8f2] px-4 py-3 text-sm outline-none transition focus:border-[#0067b1] focus:ring-4 focus:ring-[#10b6d6]/15"
               />
               <button
                 type="submit"
-                disabled={isStreaming}
-                className="rounded-full bg-[#ff8a1c] p-3 text-white shadow-lg shadow-orange-500/20 transition hover:-translate-y-0.5 hover:bg-[#f47c08] disabled:cursor-not-allowed disabled:opacity-60"
+                disabled={isStreaming || !input.trim()}
+                className="rounded-2xl bg-[#ff8a1c] p-3 text-white transition hover:bg-[#f47c08] focus:ring-4 focus:ring-[#ff8a1c]/25 focus:outline-none disabled:cursor-not-allowed disabled:bg-[#e3d8cb] disabled:text-slate-500"
                 aria-label="Enviar mensagem"
               >
-                <Send className="h-5 w-5" />
+                <Send className="h-5 w-5" aria-hidden />
               </button>
             </form>
           </footer>
@@ -204,24 +215,68 @@ export function PropertyAssistant({ property }: { property: Property }) {
   );
 }
 
+function GuideCallout({ propertyCode }: { propertyCode: string }) {
+  return (
+    <div className="rounded-[1.35rem] border border-orange-100 bg-white p-4 shadow-sm">
+      <p className="font-semibold text-[#06243d]">Guia completo da estadia</p>
+      <p className="mt-2 text-sm leading-6 text-slate-600">
+        Acesse todas as informações organizadas: entrada no imóvel, Wi-Fi,
+        regras, check-in, check-out e recomendações locais.
+      </p>
+      <Link
+        href={`/${propertyCode}/guia`}
+        className="mt-4 inline-flex items-center justify-center gap-2 rounded-2xl bg-[#ff8a1c] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#f47c08] focus:ring-4 focus:ring-[#ff8a1c]/25 focus:outline-none"
+      >
+        Ver guia completo
+        <ArrowRight className="h-4 w-4" aria-hidden />
+      </Link>
+    </div>
+  );
+}
+
+function MessageRow({
+  message,
+  children,
+}: {
+  message: ChatMessage;
+  children?: ReactNode;
+}) {
+  const isUser = message.role === "user";
+
+  return (
+    <div className="space-y-4">
+      <div
+        className={
+          isUser
+            ? "ml-auto max-w-[86%] rounded-[1.25rem] rounded-br-md bg-[#1e6f9f] px-5 py-3 text-sm leading-6 text-white"
+            : "mr-auto max-w-[88%] rounded-[1.25rem] rounded-bl-md bg-white px-5 py-3 text-sm leading-6 text-slate-700 shadow-sm"
+        }
+      >
+        {message.content || "..."}
+      </div>
+      {children}
+    </div>
+  );
+}
+
 function ContextCard({
   icon,
   label,
   value,
   detail,
 }: {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   value: string;
   detail: string;
 }) {
   return (
-    <div className="rounded-3xl border border-white/70 bg-white/75 p-5 shadow-sm backdrop-blur">
+    <div className="rounded-2xl border border-white bg-white/75 p-4 shadow-sm">
       <p className="flex items-center gap-2 text-sm font-semibold text-[#0067b1]">
         {icon}
         {label}
       </p>
-      <p className="mt-3 text-2xl font-semibold text-[#06243d]">{value}</p>
+      <p className="mt-2 text-2xl font-semibold text-[#06243d]">{value}</p>
       <p className="mt-1 text-sm text-slate-500">{detail}</p>
     </div>
   );

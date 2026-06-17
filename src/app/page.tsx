@@ -15,7 +15,6 @@ export default function Home() {
             </p>
             <h1 className="mt-4 text-[clamp(2.75rem,5vw,4.75rem)] font-semibold leading-[0.98] tracking-[-0.055em] text-[#06243d]">
               Precisa de ajuda no imóvel?
-              <br />
             </h1>
             <p className="mt-5 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
               Digite o código da reserva ou escaneie o QR Code para falar com o
