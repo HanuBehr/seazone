@@ -39,15 +39,18 @@ export function PropertyGuide({
 }) {
   const amenities = getEnabledAmenities(property);
   const whatsappUrl = `https://wa.me/${formatPhoneForWhatsApp(property.host.phone)}`;
+  const heroImage = property.images[0];
+  const shouldSkipOptimization = heroImage.includes("upload.wikimedia.org");
 
   return (
     <main className="seazone-shell min-h-screen pb-24 text-slate-900">
       <section className="relative isolate overflow-hidden bg-[#06243d] text-white">
         <Image
-          src={property.images[0]}
+          src={heroImage}
           alt={`Foto do imóvel ${property.name}`}
           fill
           priority
+          unoptimized={shouldSkipOptimization}
           sizes="100vw"
           className="-z-20 object-cover opacity-50"
         />

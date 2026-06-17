@@ -165,7 +165,7 @@ const properties = [
       bbq_grill: true,
     },
     images: [
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200",
+      "https://upload.wikimedia.org/wikipedia/commons/7/72/Florianopolis_Campeche_Ilha.JPG",
     ],
     host: {
       name: "Marina Costa",
@@ -219,7 +219,7 @@ const properties = [
       dishwasher: true,
     },
     images: [
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200",
+      "https://upload.wikimedia.org/wikipedia/commons/8/81/Blumenau_a_partir_do_edificio_Petite_Maison_-_panoramio_%288%29_%28cropped%29.jpg",
     ],
     host: {
       name: "Roberto Weiss",
@@ -275,7 +275,7 @@ const properties = [
       pool: true,
     },
     images: [
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=1200",
+      "https://upload.wikimedia.org/wikipedia/commons/5/59/Balne%C3%A1rio_Cambori%C3%BA_from_Unipraias_Park_2023-04-02.jpg",
     ],
     host: {
       name: "Patrícia Almeida",
