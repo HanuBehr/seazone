@@ -21,32 +21,29 @@ export function PropertyCodeForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="rounded-[1.5rem] border border-cyan-100 bg-cyan-50/70 p-5"
-    >
-      <label htmlFor="property-code" className="block font-semibold text-slate-950">
+    <form onSubmit={handleSubmit} className="mt-5 rounded-[1.5rem] bg-white p-4 shadow-sm">
+      <label htmlFor="property-code" className="block font-semibold text-[#06243d]">
         Código do imóvel
       </label>
       <p className="mt-2 text-sm leading-6 text-slate-600">
-        Exemplo para avaliação: `FLN001` ou `GRM001`.
+        Use o código recebido com a reserva ou exibido no QR Code.
       </p>
       <div className="mt-4 flex flex-col gap-3 sm:flex-row">
         <div className="relative flex-1">
-          <Home className="pointer-events-none absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-cyan-700" />
+          <Home className="pointer-events-none absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-[#0067b1]" />
           <input
             id="property-code"
             value={propertyCode}
             onChange={(event) => setPropertyCode(event.target.value)}
             placeholder="Ex: FLN001"
-            className="h-12 w-full rounded-full border border-cyan-100 bg-white pr-4 pl-12 font-medium tracking-wide text-slate-950 outline-none transition focus:border-cyan-700"
+            className="h-12 w-full rounded-full border border-cyan-100 bg-[#f7fbfc] pr-4 pl-12 font-semibold tracking-wide text-[#06243d] outline-none transition focus:border-[#0067b1] focus:bg-white"
             autoComplete="off"
           />
         </div>
         <button
           type="submit"
           disabled={isPending || !propertyCode.trim()}
-          className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-cyan-700 px-6 font-semibold text-white transition hover:bg-cyan-800 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#ff8a1c] px-6 font-semibold text-white shadow-lg shadow-orange-500/20 transition hover:-translate-y-0.5 hover:bg-[#f47c08] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
           Iniciar conversa

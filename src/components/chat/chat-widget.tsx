@@ -92,10 +92,10 @@ export function ChatWidget({
   return (
     <>
       {isOpen ? (
-        <div className="fixed inset-x-3 bottom-3 z-50 mx-auto flex max-h-[82vh] max-w-md flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-2xl sm:inset-x-auto sm:right-5 sm:bottom-5 sm:w-[420px]">
-          <div className="flex items-center justify-between bg-slate-950 px-5 py-4 text-white">
+        <div className="fixed inset-x-3 bottom-3 z-50 mx-auto flex max-h-[82vh] max-w-md flex-col overflow-hidden rounded-[1.75rem] border border-cyan-100 bg-white shadow-2xl shadow-slate-900/20 sm:inset-x-auto sm:right-5 sm:bottom-5 sm:w-[420px]">
+          <div className="flex items-center justify-between bg-[#06243d] px-5 py-4 text-white">
             <div className="flex items-center gap-3">
-              <span className="rounded-full bg-cyan-400 p-2 text-slate-950">
+              <span className="rounded-full bg-[#ff8a1c] p-2 text-white shadow-lg shadow-orange-500/20">
                 <Bot className="h-5 w-5" />
               </span>
               <div>
@@ -115,14 +115,14 @@ export function ChatWidget({
             </button>
           </div>
 
-          <div className="flex-1 space-y-3 overflow-y-auto bg-slate-50 p-4">
+          <div className="flex-1 space-y-3 overflow-y-auto bg-gradient-to-b from-[#f8fdff] to-white p-4">
             {messages.map((message, index) => (
               <div
                 key={index}
                 className={
                   message.role === "user"
-                    ? "ml-auto max-w-[85%] rounded-2xl bg-cyan-700 px-4 py-3 text-sm leading-6 text-white"
-                    : "mr-auto max-w-[85%] rounded-2xl bg-white px-4 py-3 text-sm leading-6 text-slate-700 shadow-sm"
+                    ? "ml-auto max-w-[85%] rounded-2xl rounded-br-md bg-[#0067b1] px-4 py-3 text-sm leading-6 text-white"
+                    : "mr-auto max-w-[85%] rounded-2xl rounded-bl-md border border-cyan-50 bg-white px-4 py-3 text-sm leading-6 text-slate-700 shadow-sm"
                 }
               >
                 {message.content || "..."}
@@ -138,7 +138,7 @@ export function ChatWidget({
                   key={suggestion}
                   onClick={() => sendMessage(suggestion)}
                   disabled={isStreaming}
-                  className="shrink-0 rounded-full bg-slate-100 px-3 py-2 text-xs font-medium text-slate-700 transition hover:bg-cyan-50 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="shrink-0 rounded-full border border-cyan-100 bg-cyan-50 px-3 py-2 text-xs font-semibold text-[#0067b1] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {suggestion}
                 </button>
@@ -150,12 +150,12 @@ export function ChatWidget({
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 placeholder="Pergunte sobre sua estadia"
-                className="min-w-0 flex-1 rounded-full border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-cyan-600"
+                className="min-w-0 flex-1 rounded-full border border-slate-200 bg-[#f7fbfc] px-4 py-3 text-sm outline-none transition focus:border-[#0067b1] focus:bg-white"
               />
               <button
                 type="submit"
                 disabled={isStreaming}
-                className="rounded-full bg-cyan-700 p-3 text-white transition hover:bg-cyan-800 disabled:cursor-not-allowed disabled:opacity-60"
+                className="rounded-full bg-[#ff8a1c] p-3 text-white shadow-lg shadow-orange-500/20 transition hover:bg-[#f47c08] disabled:cursor-not-allowed disabled:opacity-60"
                 aria-label="Enviar mensagem"
               >
                 <Send className="h-5 w-5" />
@@ -168,9 +168,9 @@ export function ChatWidget({
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="fixed right-4 bottom-4 z-40 flex items-center gap-2 rounded-full bg-slate-950 px-5 py-4 font-semibold text-white shadow-2xl transition hover:-translate-y-0.5 hover:bg-slate-800"
+        className="fixed right-4 bottom-4 z-40 flex items-center gap-2 rounded-full bg-[#06243d] px-5 py-4 font-semibold text-white shadow-2xl shadow-slate-900/20 transition hover:-translate-y-0.5 hover:bg-[#0067b1]"
       >
-        <Bot className="h-5 w-5 text-cyan-300" />
+        <Bot className="h-5 w-5 text-[#ff8a1c]" />
         Assistente virtual
       </button>
     </>

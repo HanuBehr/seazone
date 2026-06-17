@@ -79,14 +79,14 @@ export function ExperienceGuideSection({
   }, [attempt, initialGuide, propertyCode]);
 
   return (
-    <Card>
+    <Card className="seazone-card-shadow border-cyan-100">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <SectionTitle
           eyebrow="IA local"
           title="Guia de experiências"
           description="Recomendações contextualizadas para o bairro e a cidade deste imóvel."
         />
-        <div className="inline-flex w-fit items-center gap-2 rounded-full bg-cyan-50 px-4 py-2 text-sm font-medium text-cyan-800">
+        <div className="inline-flex w-fit items-center gap-2 rounded-full bg-[#06243d] px-4 py-2 text-sm font-semibold text-white">
           <Sparkles className="h-4 w-4" />
           Gerado com IA
         </div>
@@ -94,13 +94,13 @@ export function ExperienceGuideSection({
 
       {status === "ready" && guide ? (
         <div className="mt-6 space-y-6">
-          <p className="rounded-2xl bg-cyan-50 p-5 leading-7 text-slate-700">
+          <p className="rounded-[1.5rem] border border-cyan-100 bg-gradient-to-br from-cyan-50 to-white p-5 leading-7 text-slate-700">
             {guide.welcome_message}
           </p>
           <GuideList title="Restaurantes próximos" items={guide.restaurants} />
           <GuideList title="Atrações próximas" items={guide.attractions} />
           <GuideList title="Serviços essenciais" items={guide.essentials} />
-          <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+          <div className="rounded-[1.5rem] border border-orange-200 bg-orange-50 p-5">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">
               Dica sazonal
             </p>
@@ -142,12 +142,15 @@ function GuideList({
       <h3 className="text-lg font-semibold text-slate-950">{title}</h3>
       <div className="mt-3 grid gap-3 sm:grid-cols-2">
         {items.map((item) => (
-          <article key={`${title}-${item.name}`} className="rounded-2xl bg-slate-50 p-4">
+          <article
+            key={`${title}-${item.name}`}
+            className="rounded-[1.25rem] border border-slate-100 bg-white p-4 shadow-sm"
+          >
             <p className="flex items-center gap-2 font-semibold text-slate-950">
-              <MapPinned className="h-4 w-4 text-cyan-700" />
+              <MapPinned className="h-4 w-4 text-[#0067b1]" />
               {item.name}
             </p>
-            <p className="mt-1 text-sm font-medium text-cyan-700">
+            <p className="mt-1 text-sm font-semibold text-[#0067b1]">
               {item.distance}
             </p>
             <p className="mt-2 text-sm leading-6 text-slate-600">
@@ -163,7 +166,7 @@ function GuideList({
 function GuideSkeleton() {
   return (
     <div className="mt-6 space-y-4">
-      <div className="rounded-2xl bg-cyan-50 p-5">
+      <div className="rounded-[1.5rem] bg-cyan-50 p-5">
         <p className="font-semibold text-cyan-900">
           Estamos montando seu guia local...
         </p>
