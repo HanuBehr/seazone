@@ -12,15 +12,15 @@ Fluxo de avaliação:
 
 - Acesse https://seazone.vercel.app
 - Digite o código do imóvel: `FLN001` ou `GRM001`
-- O hóspede entra primeiro no chat do César da Seazone
-- O assistente responde dúvidas daquele imóvel e oferece o link do guia completo
+- O hóspede acessa o Guia Digital personalizado daquele imóvel
+- O César fica disponível no guia para responder dúvidas contextualizadas
 
 Links equivalentes a um QR Code no imóvel:
 
 - https://seazone.vercel.app/FLN001
 - https://seazone.vercel.app/GRM001
 
-Guias completos:
+Rotas de compatibilidade para o guia:
 
 - https://seazone.vercel.app/FLN001/guia
 - https://seazone.vercel.app/GRM001/guia
@@ -39,9 +39,9 @@ Guias completos:
 ## Funcionalidades
 
 - Home com entrada de código do imóvel
-- QR Code ou link do imóvel abre o chat do César para aquela estadia
-- Chat inicial centralizado em `/FLN001` e `/GRM001`
-- Guia completo em `/FLN001/guia` e `/GRM001/guia`
+- QR Code ou link do imóvel abre o guia personalizado daquela estadia
+- Guia completo personalizado em `/FLN001` e `/GRM001`
+- Rotas compatíveis do guia em `/FLN001/guia` e `/GRM001/guia`
 - Dados do imóvel, fotos, capacidade, amenidades e endereço
 - Informações de acesso, WiFi, estacionamento e contato do anfitrião
 - Regras da estadia com check-in, check-out, pets, fumantes, crianças e eventos
@@ -66,7 +66,7 @@ O que está dentro do escopo:
 - Contato do anfitrião
 - Guia de experiências contextualizado por IA
 - Assistente virtual que conhece aquele imóvel
-- Primeiro contato do hóspede via chat do César da Seazone
+- Assistente virtual César disponível dentro do guia do imóvel
 
 O que ficou fora do escopo por não estar no documento:
 
@@ -144,10 +144,10 @@ src/app
   Home com entrada de código do imóvel
 
 src/app/[code]
-  Primeiro contato do hóspede: chat do César para o imóvel
+  Guia Digital personalizado do imóvel, acessado pelo link único do código
 
 src/app/[code]/guia
-  Guia completo da estadia do imóvel
+  Rota compatível para o mesmo guia completo da estadia
 
 src/app/api/properties/[code]/experience-guide
   Geração e persistência do guia de experiências
@@ -198,12 +198,12 @@ O chat usa `streamText` e recebe um system prompt com:
 
 - Código de imóvel inexistente mostra uma tela amigável.
 - Se a IA falhar, o guia exibe erro e botão de retry.
-- Se `OPENAI_API_KEY` não estiver configurada, a API retorna erro explícito.
+- Se `OPENAI_API_KEY` não estiver configurada, a geração do Guia de Experiências retorna erro explícito e o chat usa respostas contextuais de fallback.
 - O imóvel continua útil mesmo sem o guia de experiências, pois dados de acesso, WiFi, regras e contato são renderizados separadamente.
 
 ## Segurança e produto
 
-O documento pede links por código do imóvel, como `/FLN001`. Nesta versão, esse link funciona como a primeira tela do hóspede: um chat central com o César da Seazone, contextualizado para aquele imóvel. O guia completo fica em `/FLN001/guia` e pode ser enviado pelo próprio assistente.
+O documento pede links por código do imóvel, como `/FLN001`. Nesta versão, esse link abre diretamente o Guia Digital do Hóspede daquele imóvel, com informações de acesso, WiFi, regras, contato, Guia de Experiências gerado por IA e chat contextual do César disponível na própria página.
 
 A aplicação também define `robots: noindex` para evitar indexação dos guias públicos.
 

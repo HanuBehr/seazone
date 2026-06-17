@@ -3,6 +3,7 @@ import { streamText } from "ai";
 import { z } from "zod";
 
 import { buildChatSystemPrompt } from "@/lib/ai/prompts";
+import { formatHour } from "@/lib/format";
 import { getExperienceGuideForProperty } from "@/server/experience-guides";
 import { getPropertyByCode } from "@/server/properties";
 
@@ -17,6 +18,36 @@ const chatRequestSchema = z.object({
     }),
   ),
 });
+
+const fallbackRestaurants: Record<
+  string,
+  Array<{ name: string; distance: string; description: string }>
+> = {
+  FLN001: [
+    {
+      name: "Box 32",
+      distance: "aprox. 6 km",
+      description: "tradicional em Florianópolis, conhecido pelos petiscos",
+    },
+    {
+      name: "Armazém Vieira",
+      distance: "aprox. 5 km",
+      description: "referência local em frutos do mar e ambiente histórico",
+    },
+  ],
+  GRM001: [
+    {
+      name: "Cara de Mau",
+      distance: "aprox. 2 km",
+      description: "restaurante temático muito conhecido em Gramado",
+    },
+    {
+      name: "George III",
+      distance: "aprox. 2 km",
+      description: "cozinha contemporânea em uma casa clássica da cidade",
+    },
+  ],
+};
 
 export async function POST(request: Request) {
   const body = chatRequestSchema.safeParse(await request.json());
@@ -76,7 +107,7 @@ function buildFallbackAnswer(
   }
 
   if (normalized.includes("check-in") || normalized.includes("checkin") || normalized.includes("entrar")) {
-    return `O check-in pode ser feito a partir das ${property.rules.check_in_time}. ${property.operational.property_access_instructions}`;
+    return `O check-in pode ser feito a partir das ${formatHour(property.rules.check_in_time)}. ${property.operational.property_access_instructions}`;
   }
 
   if (normalized.includes("restaurante") || normalized.includes("comer") || normalized.includes("perto")) {
@@ -87,6 +118,19 @@ function buildFallbackAnswer(
         .join(", ");
 
       return `Perto de você tem ${restaurants}. Para ver mais detalhes, use o botão Ver guia completo da estadia.`;
+    }
+
+    const fallback = fallbackRestaurants[property.code];
+
+    if (fallback?.length) {
+      const restaurants = fallback
+        .map(
+          (restaurant) =>
+            `${restaurant.name} (${restaurant.distance}), ${restaurant.description}`,
+        )
+        .join("; ");
+
+      return `Perto de você tem ${restaurants}.`;
     }
 
     return "Ainda não tenho restaurantes gerados para este imóvel. Você pode abrir o guia completo da estadia para gerar as recomendações locais.";
