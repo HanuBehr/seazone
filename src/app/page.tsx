@@ -1,78 +1,114 @@
 import { PropertyCodeForm } from "@/components/access/property-code-form";
 import { SeazoneLogo } from "@/components/brand/seazone-logo";
+import type { ReactNode } from "react";
 
 export default function Home() {
   return (
-    <main className="seazone-shell relative min-h-screen overflow-hidden px-5 py-6 text-slate-900 sm:px-8 lg:px-10">
-      <div className="pointer-events-none absolute -top-28 right-0 h-80 w-80 rounded-full bg-[#ff8a1c]/20 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-[#10b6d6]/20 blur-3xl" />
+    <main className="seazone-shell min-h-screen px-5 py-6 text-slate-900 sm:px-8 lg:px-10">
+      <section className="mx-auto grid min-h-[calc(100vh-3rem)] max-w-6xl items-center gap-10 py-6 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
+        <div className="flex flex-col">
+          <SeazoneLogo />
 
-      <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between">
-        <SeazoneLogo />
-        <span className="rounded-full border border-white/70 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#0067b1] shadow-sm backdrop-blur">
-          Guia do Hóspede
-        </span>
-      </header>
-
-      <section className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] max-w-6xl items-center gap-10 py-10 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="space-y-8">
-          <div className="inline-flex rounded-full border border-cyan-100 bg-white/75 px-4 py-2 text-sm font-semibold text-[#0067b1] shadow-sm backdrop-blur">
-            Atendimento inteligente para sua estadia
-          </div>
-          <div className="space-y-5">
-            <h1 className="max-w-3xl text-5xl font-semibold leading-[0.98] tracking-[-0.05em] text-[#06243d] sm:text-7xl">
-              Fale com o César da Seazone.
+          <div className="mt-12 max-w-xl sm:mt-16 lg:mt-20">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#0067b1]">
+              Assistente da sua estadia
+            </p>
+            <h1 className="mt-5 text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-[#06243d] sm:text-6xl lg:text-7xl">
+              Digite o código do imóvel.
+              <br />
+              Fale com o César.
             </h1>
-            <p className="max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
-              Digite o código do imóvel reservado ou escaneie o QR Code no
-              imóvel. O assistente abre no contexto exato da sua estadia e te
-              ajuda com acesso, WiFi, regras e recomendações locais.
+            <p className="mt-6 max-w-lg text-lg leading-8 text-slate-600">
+              Receba ajuda imediata sobre acesso, Wi-Fi, check-in, regras da
+              casa e recomendações locais.
             </p>
-          </div>
 
-          <div className="grid gap-3 sm:grid-cols-3">
-            <MiniStat value="24h" label="informação sempre à mão" />
-            <MiniStat value="1 link" label="para cada imóvel" />
-            <MiniStat value="IA" label="com contexto da estadia" />
-          </div>
-        </div>
-
-        <div className="seazone-glass rounded-[2rem] p-5 sm:p-7">
-          <div className="rounded-[1.5rem] bg-[#06243d] p-5 text-white shadow-2xl shadow-slate-900/20">
-            <p className="text-sm font-medium text-cyan-100">César da Seazone</p>
-            <p className="mt-3 text-2xl font-semibold tracking-tight">
-              Oi, como posso te ajudar hoje?
-            </p>
-            <p className="mt-3 text-sm leading-6 text-cyan-50/85">
-              Primeiro, me diga o código do imóvel para eu abrir as informações
-              corretas da sua estadia.
-            </p>
-          </div>
-
-          <PropertyCodeForm />
-
-          <div className="mt-5 rounded-3xl border border-cyan-100 bg-white/80 p-5 text-slate-700">
-            <p className="font-semibold text-[#06243d]">Exemplos para avaliação</p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              <span className="rounded-full bg-cyan-50 px-3 py-2 text-sm font-semibold text-[#0067b1]">
-                FLN001
-              </span>
-              <span className="rounded-full bg-cyan-50 px-3 py-2 text-sm font-semibold text-[#0067b1]">
-                GRM001
-              </span>
+            <div className="mt-8">
+              <PropertyCodeForm />
             </div>
           </div>
+
+          <p className="mt-6 hidden text-sm leading-6 text-slate-500 lg:block">
+            Atendimento 24h • Informações por imóvel • Respostas com contexto
+            da estadia
+          </p>
         </div>
+
+        <ChatPreview />
+
+        <p className="text-sm leading-6 text-slate-500 lg:hidden">
+          Atendimento 24h • Informações por imóvel • Respostas com contexto da
+          estadia
+        </p>
       </section>
     </main>
   );
 }
 
-function MiniStat({ value, label }: { value: string; label: string }) {
+function ChatPreview() {
   return (
-    <div className="rounded-3xl border border-white/70 bg-white/70 p-4 shadow-sm backdrop-blur">
-      <p className="text-2xl font-semibold text-[#0067b1]">{value}</p>
-      <p className="mt-1 text-sm leading-5 text-slate-600">{label}</p>
+    <aside
+      aria-label="Prévia do chat do César da Seazone"
+      className="rounded-[2rem] border border-white bg-white p-3 shadow-[0_28px_90px_rgba(6,36,61,0.14)] sm:p-4"
+    >
+      <div className="overflow-hidden rounded-[1.65rem] border border-slate-100 bg-[#f8fbfb]">
+        <div className="bg-[#06243d] px-5 py-5 text-white sm:px-6">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <p className="text-base font-semibold">César da Seazone</p>
+              <p className="mt-1 text-sm text-cyan-100">
+                Assistente da sua estadia
+              </p>
+            </div>
+            <span className="rounded-full bg-[#ff8a1c] px-3 py-1 text-xs font-semibold text-white">
+              online
+            </span>
+          </div>
+        </div>
+
+        <div className="space-y-4 px-4 py-5 sm:px-6 sm:py-7">
+          <MessageBubble>
+            Olá! Me diga o código do imóvel para eu abrir as informações da sua
+            reserva.
+          </MessageBubble>
+          <MessageBubble align="right">FLN001</MessageBubble>
+          <MessageBubble>
+            Encontrei sua estadia. Quer ajuda com acesso, Wi-Fi ou regras da
+            casa?
+          </MessageBubble>
+        </div>
+
+        <div className="border-t border-slate-100 bg-white px-4 py-4 sm:px-6">
+          <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-[#fbf7f0] px-4 py-3 text-sm text-slate-500">
+            Pergunte sobre sua estadia
+            <span className="ml-auto h-8 rounded-full bg-[#ff8a1c] px-4 text-xs font-semibold leading-8 text-white">
+              Enviar
+            </span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+function MessageBubble({
+  children,
+  align = "left",
+}: {
+  children: ReactNode;
+  align?: "left" | "right";
+}) {
+  const isRight = align === "right";
+
+  return (
+    <div
+      className={
+        isRight
+          ? "ml-auto max-w-[78%] rounded-3xl rounded-br-md bg-[#0067b1] px-5 py-3 text-sm font-medium leading-6 text-white"
+          : "mr-auto max-w-[84%] rounded-3xl rounded-bl-md bg-white px-5 py-3 text-sm leading-6 text-slate-700 shadow-sm"
+      }
+    >
+      {children}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4fbff;
+  --background: #fbf7f0;
   --foreground: #082436;
   --seazone-blue: #0067b1;
   --seazone-navy: #06243d;
@@ -37,9 +37,9 @@ textarea {
 
 .seazone-shell {
   background:
-    radial-gradient(circle at top left, rgba(16, 182, 214, 0.2), transparent 32rem),
-    radial-gradient(circle at 85% 15%, rgba(255, 138, 28, 0.16), transparent 28rem),
-    linear-gradient(135deg, #f8fdff 0%, #eaf8fc 48%, #ffffff 100%);
+    radial-gradient(circle at 8% 10%, rgba(16, 182, 214, 0.12), transparent 28rem),
+    radial-gradient(circle at 92% 18%, rgba(255, 138, 28, 0.1), transparent 24rem),
+    linear-gradient(135deg, #fffaf2 0%, #f6fbfb 52%, #ffffff 100%);
 }
 
 .seazone-glass {
