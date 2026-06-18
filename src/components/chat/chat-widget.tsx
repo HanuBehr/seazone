@@ -1,7 +1,8 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
-import { Bot, Send, X } from "lucide-react";
+import { Fragment, FormEvent, ReactNode, useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { Send, X } from "lucide-react";
 
 type ChatMessage = {
   role: "user" | "assistant";
@@ -133,8 +134,14 @@ export function ChatWidget({
         <div className="fixed inset-x-3 bottom-3 z-50 mx-auto flex max-h-[85dvh] max-w-md flex-col overflow-hidden rounded-card border border-line bg-surface shadow-pop pb-[env(safe-area-inset-bottom)] sm:inset-x-auto sm:right-5 sm:bottom-5 sm:w-[400px]">
           <div className="flex items-center justify-between gap-3 bg-navy px-5 py-4 text-white">
             <div className="flex min-w-0 items-center gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-field bg-orange text-white">
-                <Bot className="h-5 w-5" aria-hidden />
+              <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-field bg-orange">
+                <Image
+                  src="/assistant.png"
+                  alt="Assistente virtual Seazone"
+                  fill
+                  sizes="40px"
+                  className="object-cover"
+                />
               </span>
               <div className="min-w-0">
                 <p className="font-semibold tracking-[-0.01em]">
@@ -171,7 +178,9 @@ export function ChatWidget({
                     : "mr-auto max-w-[85%] rounded-panel rounded-bl-md border border-line bg-surface px-4 py-3 text-sm leading-6 text-ink shadow-card"
                 }
               >
-                {message.content || (
+                {message.content ? (
+                  <MarkdownText content={message.content} />
+                ) : (
                   <span className="text-muted">…</span>
                 )}
               </div>
@@ -239,7 +248,7 @@ export function ChatWidget({
               setIsOpen(true);
               setHasUnreadIntro(false);
             }}
-            className="relative flex h-14 w-14 items-center justify-center gap-2 rounded-full bg-navy font-semibold text-white shadow-pop transition hover:-translate-y-0.5 hover:bg-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/60 focus-visible:ring-offset-2 sm:h-auto sm:w-auto sm:px-5 sm:py-3.5"
+            className="relative flex h-14 w-14 items-center justify-center gap-2 rounded-full bg-navy font-semibold text-white shadow-pop transition hover:-translate-y-0.5 hover:bg-navy-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/60 focus-visible:ring-offset-2 sm:h-auto sm:w-auto sm:px-4 sm:py-3"
             aria-label="Abrir assistente virtual"
           >
             {hasUnreadIntro ? (
@@ -247,13 +256,58 @@ export function ChatWidget({
                 1
               </span>
             ) : null}
-            <Bot className="h-6 w-6 text-orange sm:h-5 sm:w-5" aria-hidden />
+            <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full bg-orange sm:h-8 sm:w-8">
+              <Image
+                src="/assistant.png"
+                alt=""
+                fill
+                sizes="36px"
+                className="object-cover"
+              />
+            </span>
             <span className="hidden sm:inline">Assistente virtual</span>
           </button>
         </div>
       ) : null}
     </>
   );
+}
+
+function MarkdownText({ content }: { content: string }) {
+  const lines = content.split("\n");
+
+  return lines.map((line, lineIndex) => (
+    <Fragment key={`${line}-${lineIndex}`}>
+      {renderInlineMarkdown(line)}
+      {lineIndex < lines.length - 1 ? <br /> : null}
+    </Fragment>
+  ));
+}
+
+function renderInlineMarkdown(content: string) {
+  const nodes: ReactNode[] = [];
+  const boldPattern = /\*\*([^*]+)\*\*/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = boldPattern.exec(content)) !== null) {
+    if (match.index > lastIndex) {
+      nodes.push(content.slice(lastIndex, match.index));
+    }
+
+    nodes.push(
+      <strong key={`${match.index}-${match[1]}`} className="font-semibold text-current">
+        {match[1]}
+      </strong>,
+    );
+    lastIndex = match.index + match[0].length;
+  }
+
+  if (lastIndex < content.length) {
+    nodes.push(content.slice(lastIndex));
+  }
+
+  return nodes.length ? nodes : content;
 }
 
 function playNotificationSound() {

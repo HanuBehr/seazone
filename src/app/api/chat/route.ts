@@ -59,6 +59,11 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 1,4 km",
         description: "opção japonesa na região central da Trindade",
       },
+      {
+        name: "Café Cultura Trindade",
+        distance: "aprox. 1,6 km",
+        description: "café prático para brunch, lanche e trabalho remoto",
+      },
     ],
     attractions: [
       {
@@ -89,6 +94,12 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 500 m",
         description: "farmácia próxima para compras básicas",
         type: "pharmacy",
+      },
+      {
+        name: "Hospital Universitário UFSC",
+        distance: "aprox. 1,5 km",
+        description: "referência hospitalar próxima ao bairro Trindade",
+        type: "hospital",
       },
     ],
     airport: {
@@ -122,6 +133,11 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 2 km",
         description: "clássico de massas na região central de Gramado",
       },
+      {
+        name: "Malbec Restaurante",
+        distance: "aprox. 2 km",
+        description: "opção conhecida para carnes e jantar na área central",
+      },
     ],
     attractions: [
       {
@@ -152,6 +168,12 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 2 km",
         description: "farmácia próxima da área mais turística",
         type: "pharmacy",
+      },
+      {
+        name: "Hospital Arcanjo São Miguel",
+        distance: "aprox. 3 km",
+        description: "hospital de referência para atendimento na cidade",
+        type: "hospital",
       },
     ],
     airport: {
@@ -185,6 +207,11 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 2 km",
         description: "boa opção casual para jantar no Campeche",
       },
+      {
+        name: "Nankin Sushi Campeche",
+        distance: "aprox. 2 km",
+        description: "opção japonesa casual para jantar no sul da ilha",
+      },
     ],
     attractions: [
       {
@@ -215,6 +242,12 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 2 km",
         description: "farmácia útil para itens básicos da estadia",
         type: "pharmacy",
+      },
+      {
+        name: "UPA Sul da Ilha",
+        distance: "aprox. 7 km",
+        description: "unidade pública de pronto atendimento no sul de Florianópolis",
+        type: "hospital",
       },
     ],
     airport: {
@@ -248,6 +281,11 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 1 km",
         description: "pizzaria casual e prática para jantar na região da Lagoa",
       },
+      {
+        name: "Café Cultura Lagoa",
+        distance: "aprox. 800 m",
+        description: "cafeteria conhecida para brunch, cafés e lanches",
+      },
     ],
     attractions: [
       {
@@ -278,6 +316,12 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 700 m",
         description: "farmácia próxima ao centrinho da Lagoa",
         type: "pharmacy",
+      },
+      {
+        name: "Hospital Universitário UFSC",
+        distance: "aprox. 9 km",
+        description: "referência hospitalar prática saindo da Lagoa pela região da Trindade",
+        type: "hospital",
       },
     ],
     airport: {
@@ -311,6 +355,11 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 1,5 km",
         description: "opção sofisticada à beira-mar, boa para jantar ou drinks",
       },
+      {
+        name: "Spazzio Jurere",
+        distance: "aprox. 1 km",
+        description: "opção casual para refeição italiana e jantar em Jurerê",
+      },
     ],
     attractions: [
       {
@@ -341,6 +390,12 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 900 m",
         description: "farmácia próxima ao Open Shopping e à região central de Jurerê",
         type: "pharmacy",
+      },
+      {
+        name: "UPA Norte da Ilha",
+        distance: "aprox. 10 km",
+        description: "unidade de pronto atendimento para urgências no norte da ilha",
+        type: "hospital",
       },
     ],
     airport: {
@@ -374,6 +429,11 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 1 km",
         description: "café agradável para passeio leve no bairro histórico",
       },
+      {
+        name: "Restaurante Rosso",
+        distance: "aprox. 4 km",
+        description: "opção conhecida em Sambaqui para frutos do mar e vista da baía",
+      },
     ],
     attractions: [
       {
@@ -404,6 +464,12 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 1 km",
         description: "farmácia prática para itens básicos",
         type: "pharmacy",
+      },
+      {
+        name: "UPA Norte da Ilha",
+        distance: "aprox. 12 km",
+        description: "unidade de pronto atendimento para urgências no norte de Florianópolis",
+        type: "hospital",
       },
     ],
     airport: {
@@ -437,6 +503,11 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 1 km",
         description: "opção prática perto da Vila Germânica para comida e chope",
       },
+      {
+        name: "Eisenbahn Bierhaus",
+        distance: "aprox. 1 km",
+        description: "opção temática e cervejeira na região da Vila Germânica",
+      },
     ],
     attractions: [
       {
@@ -467,6 +538,12 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 3 km",
         description: "farmácia em região central",
         type: "pharmacy",
+      },
+      {
+        name: "Hospital Santa Isabel",
+        distance: "aprox. 4 km",
+        description: "hospital de referência na região central de Blumenau",
+        type: "hospital",
       },
     ],
     airport: {
@@ -500,6 +577,11 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 2 km",
         description: "restaurante conhecido para jantar na região da orla",
       },
+      {
+        name: "Casa da Lagosta",
+        distance: "aprox. 2 km",
+        description: "opção tradicional para frutos do mar na Praia Central",
+      },
     ],
     attractions: [
       {
@@ -530,6 +612,12 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 1 km",
         description: "farmácia próxima da orla",
         type: "pharmacy",
+      },
+      {
+        name: "Hospital Unimed Litoral",
+        distance: "aprox. 5 km",
+        description: "hospital de referência para atendimento em Balneário Camboriú",
+        type: "hospital",
       },
     ],
     airport: {

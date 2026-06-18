@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   title: "Guia Digital do Hóspede | Seazone",
   description:
     "Guia personalizado com informações da estadia, experiências locais e assistente virtual.",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   robots: {
     index: false,
     follow: false,

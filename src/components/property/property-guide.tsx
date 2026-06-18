@@ -6,6 +6,7 @@ import { BedDouble, MapPin, ShowerHead, Users } from "lucide-react";
 import { SeazoneLogo } from "@/components/brand/seazone-logo";
 import { ChatWidget } from "@/components/chat/chat-widget";
 import { ArrivalEssentials } from "@/components/property/arrival-essentials";
+import { ExperienceGuideSection } from "@/components/property/experience-guide-section";
 import { HouseRules } from "@/components/property/house-rules";
 import { StaySummary } from "@/components/property/stay-summary";
 import type { Property } from "@/lib/validators/property";
@@ -84,6 +85,7 @@ export function PropertyGuide({
         <div className="mx-auto flex max-w-7xl min-w-0 gap-2 overflow-x-auto seazone-scroll px-5 py-3 sm:px-8 lg:px-10">
           <NavPill href="#acesso">Acesso</NavPill>
           <NavPill href="#regras">Regras</NavPill>
+          <NavPill href="#experiencias">Experiências</NavPill>
           <NavPill href="#contato">Contato</NavPill>
         </div>
       </nav>
@@ -92,6 +94,11 @@ export function PropertyGuide({
         <div className="space-y-5">
           <ArrivalEssentials property={property} />
           <HouseRules property={property} />
+          <ExperienceGuideSection
+            propertyCode={property.code}
+            propertyName={property.name}
+            location={`${property.address.neighborhood}, ${property.address.city}/${property.address.state}`}
+          />
         </div>
 
         <StaySummary property={property} />

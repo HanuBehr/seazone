@@ -48,6 +48,7 @@ Links diretos:
 - Dados do imóvel, fotos, endereço, capacidade e comodidades
 - Instruções de acesso, WiFi, estacionamento e contato do anfitrião
 - Regras da estadia
+- Guia de experiências gerado por IA, contextualizado por endereço e persistido no banco
 - Assistente virtual com streaming de resposta
 - Recomendações locais dentro do assistente
 - Página amigável para código inexistente
