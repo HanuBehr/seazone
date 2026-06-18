@@ -7,6 +7,8 @@ export function buildExperienceGuidePrompt(property: Property) {
     dateStyle: "long",
   }).format(new Date());
 
+  const fullAddress = getFullAddress(property);
+
   return `Gere um guia de experiencias local para um hospede da Seazone.
 
 Data atual: ${currentDate}
@@ -15,15 +17,17 @@ Imovel:
 - Codigo: ${property.code}
 - Nome: ${property.name}
 - Tipo: ${property.propertyType}
-- Endereco completo: ${getFullAddress(property)}
+- Endereco completo: ${fullAddress}
 - Bairro: ${property.address.neighborhood}
 - Cidade/Estado: ${property.address.city}/${property.address.state}
 
 Regras obrigatorias:
 - Responda em portugues brasileiro.
-- Baseie as recomendacoes no endereco, bairro e cidade reais do imovel. O endereco tem prioridade sobre o nome do imovel.
-- Inclua apenas lugares plausiveis e reais da regiao informada.
-- Use distancias aproximadas a partir do endereco do imovel.
+- O imovel atual e somente este: ${property.code}, ${property.name}, ${fullAddress}.
+- Baseie todas as recomendacoes no endereco, bairro e cidade reais do imovel atual. O endereco tem prioridade sobre o nome do imovel.
+- Inclua apenas lugares plausiveis e reais em ${property.address.neighborhood}, ${property.address.city}/${property.address.state}, ou em regioes claramente proximas desse endereco.
+- Nao recomende lugares de outra cidade, outro estado ou outro imovel.
+- Use distancias aproximadas a partir do endereco do imovel atual, nao do centro da cidade.
 - Nao invente dados operacionais do imovel, regras, senhas, valores ou contatos.
 - A dica sazonal deve considerar a epoca atual do ano.
 - O retorno deve seguir exatamente o schema solicitado.`;
@@ -33,6 +37,8 @@ export function buildChatSystemPrompt(
   property: Property,
   guide: ExperienceGuide | null,
 ) {
+  const fullAddress = getFullAddress(property);
+
   return `Voce e o assistente virtual da Seazone para hospedes.
 
 Responda sempre em portugues brasileiro, de forma curta, cordial e objetiva.
@@ -40,11 +46,20 @@ Use somente os dados abaixo. Se a informacao nao estiver nos dados, diga que nao
 Nunca invente senhas, codigos, politicas, distancias, valores, regras ou contatos.
 Quando o hospede pedir guia local, restaurantes, passeios, mercados, farmacias ou dicas da regiao, responda diretamente no chat usando o GUIA DE EXPERIENCIAS quando existir.
 
+ESCOPO OBRIGATORIO DA PAGINA ATUAL
+- Esta conversa pertence exclusivamente ao imovel ${property.code}: ${property.name}.
+- Localizacao exata da pagina atual: ${fullAddress}.
+- Bairro/cidade/estado da pagina atual: ${property.address.neighborhood}, ${property.address.city}/${property.address.state}.
+- Nunca responda como se o hospede estivesse em outro codigo, bairro, cidade ou estado.
+- Antes de recomendar restaurante, mercado, farmacia, atracao ou passeio, confira se a resposta combina com ${property.address.neighborhood}, ${property.address.city}/${property.address.state}.
+- Se o hospede pedir recomendacao de outra cidade ou se o GUIA DE EXPERIENCIAS conflitar com esta localizacao, ignore essa informacao e explique que voce so pode orientar sobre a regiao deste imovel.
+- Se nao houver recomendacao local segura para este endereco, diga isso de forma objetiva em vez de inventar.
+
 DADOS DO IMOVEL
 Codigo: ${property.code}
 Nome: ${property.name}
 Tipo: ${property.propertyType}
-Endereco: ${getFullAddress(property)}
+Endereco: ${fullAddress}
 Capacidade: ${property.guestCapacity} hospedes, ${property.bedroomQuantity} quartos, ${property.bathroomQuantity} banheiros
 
 ACESSO

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { buildChatSystemPrompt } from "@/lib/ai/prompts";
+import { buildChatSystemPrompt, buildExperienceGuidePrompt } from "@/lib/ai/prompts";
 import { experienceGuideFixture, propertyFixture } from "@/test/fixtures";
 
 describe("buildChatSystemPrompt", () => {
@@ -19,5 +19,26 @@ describe("buildChatSystemPrompt", () => {
 
     expect(prompt).toContain("Nunca invente");
     expect(prompt).toContain("Ainda nao ha guia de experiencias");
+  });
+
+  it("locks recommendations to the current property location", () => {
+    const prompt = buildChatSystemPrompt(propertyFixture, experienceGuideFixture);
+
+    expect(prompt).toContain("ESCOPO OBRIGATORIO DA PAGINA ATUAL");
+    expect(prompt).toContain("Esta conversa pertence exclusivamente ao imovel FLN001");
+    expect(prompt).toContain("Trindade, Florianópolis/SC");
+    expect(prompt).toContain("Nunca responda como se o hospede estivesse em outro codigo, bairro, cidade ou estado");
+    expect(prompt).toContain("ignore essa informacao");
+  });
+});
+
+describe("buildExperienceGuidePrompt", () => {
+  it("requires recommendations near the exact property address", () => {
+    const prompt = buildExperienceGuidePrompt(propertyFixture);
+
+    expect(prompt).toContain("O imovel atual e somente este: FLN001");
+    expect(prompt).toContain("Rua Lauro Linhares, 589");
+    expect(prompt).toContain("Nao recomende lugares de outra cidade");
+    expect(prompt).toContain("a partir do endereco do imovel atual");
   });
 });
