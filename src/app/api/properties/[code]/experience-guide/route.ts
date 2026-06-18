@@ -1,13 +1,10 @@
 import { generateExperienceGuide } from "@/lib/ai/experience-guide";
+import { hasOpenAIKey } from "@/lib/ai/openai";
 import { prisma } from "@/lib/db/prisma";
 import { experienceGuideSchema } from "@/lib/validators/experience-guide";
 import { getPropertyByCode } from "@/server/properties";
 
 export const runtime = "nodejs";
-
-function hasOpenAIKey() {
-  return process.env.OPENAI_API_KEY?.trim().startsWith("sk-") ?? false;
-}
 
 type RouteParams = {
   params: Promise<{ code: string }>;

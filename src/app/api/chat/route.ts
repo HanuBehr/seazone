@@ -1,7 +1,7 @@
-import { openai } from "@ai-sdk/openai";
 import { streamText } from "ai";
 import { z } from "zod";
 
+import { getOpenAIModel, hasOpenAIKey } from "@/lib/ai/openai";
 import { buildChatSystemPrompt } from "@/lib/ai/prompts";
 import { formatHour } from "@/lib/format";
 import type { ExperienceGuide } from "@/lib/validators/experience-guide";
@@ -9,10 +9,6 @@ import { getExperienceGuideForProperty } from "@/server/experience-guides";
 import { getPropertyByCode } from "@/server/properties";
 
 export const runtime = "nodejs";
-
-function hasOpenAIKey() {
-  return process.env.OPENAI_API_KEY?.trim().startsWith("sk-") ?? false;
-}
 
 const chatRequestSchema = z.object({
   propertyCode: z.string().min(1),
@@ -282,7 +278,7 @@ export async function POST(request: Request) {
   );
 
   const result = streamText({
-    model: openai("gpt-4o-mini"),
+    model: getOpenAIModel("gpt-4o-mini"),
     system: buildChatSystemPrompt(
       property,
       guide ?? getFallbackExperienceGuide(property.code),
