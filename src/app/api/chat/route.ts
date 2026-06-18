@@ -259,7 +259,7 @@ export async function POST(request: Request) {
     return Response.json({ error: "Imóvel não encontrado." }, { status: 404 });
   }
 
-  const guide = await getExperienceGuideForProperty(property.id);
+  const guide = await getExperienceGuideForProperty(property.id).catch(() => null);
 
   if (!process.env.OPENAI_API_KEY) {
     const lastUserMessage = [...body.data.messages]

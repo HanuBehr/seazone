@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
+import { demoProperties } from "@/lib/demo-properties";
 import { propertySchema, type Property } from "@/lib/validators/property";
 
 const propertyOverrides: Record<string, Partial<Pick<Property, "images" | "name">>> = {
@@ -13,16 +14,30 @@ const propertyOverrides: Record<string, Partial<Pick<Property, "images" | "name"
 };
 
 export async function getPropertyByCode(code: string): Promise<Property | null> {
-  const property = await prisma.property.findUnique({
-    where: { code: code.toUpperCase() },
-  });
+  const normalizedCode = code.toUpperCase();
 
-  if (!property) {
-    return null;
+  try {
+    const property = await prisma.property.findUnique({
+      where: { code: normalizedCode },
+    });
+
+    if (property) {
+      const parsedProperty = propertySchema.parse(property);
+      return applyPropertyOverride(parsedProperty);
+    }
+  } catch (error) {
+    console.error("Failed to fetch property from database", error);
   }
 
-  const parsedProperty = propertySchema.parse(property);
-  const override = propertyOverrides[parsedProperty.code];
+  const fallbackProperty = demoProperties.find(
+    (property) => property.code === normalizedCode,
+  );
 
-  return override ? { ...parsedProperty, ...override } : parsedProperty;
+  return fallbackProperty ? applyPropertyOverride(fallbackProperty) : null;
+}
+
+function applyPropertyOverride(property: Property) {
+  const override = propertyOverrides[property.code];
+
+  return override ? { ...property, ...override } : property;
 }
