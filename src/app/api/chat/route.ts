@@ -36,6 +36,7 @@ const fallbackLocalGuides: Record<
       type: "pharmacy" | "supermarket" | "hospital" | "other";
     }>;
     airport: { name: string; distance: string; travelTime: string };
+    transportTip: string;
     seasonalTips: string;
   }
 > = {
@@ -68,6 +69,11 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 2,5 km",
         description: "shopping com lojas, cinema e opções de alimentação",
       },
+      {
+        name: "Lagoa da Conceição",
+        distance: "aprox. 8 km",
+        description: "região conhecida por bares, restaurantes e passeio à beira da lagoa",
+      },
     ],
     essentials: [
       {
@@ -88,6 +94,8 @@ const fallbackLocalGuides: Record<
       distance: "aprox. 12 km",
       travelTime: "20 a 35 min de carro, dependendo do trânsito",
     },
+    transportTip:
+      "Na Trindade, transporte por app costuma ser prático; em horários de aula na UFSC, saia com alguns minutos de folga.",
     seasonalTips:
       "A Trindade é prática para circular pela região da UFSC; em horários de aula, considere sair com alguns minutos de folga.",
   },
@@ -120,6 +128,11 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 3 km",
         description: "passeio clássico de Gramado, bom para fotos e caminhada",
       },
+      {
+        name: "Mini Mundo",
+        distance: "aprox. 2 km",
+        description: "atração tradicional para passeio leve em família",
+      },
     ],
     essentials: [
       {
@@ -140,6 +153,8 @@ const fallbackLocalGuides: Record<
       distance: "aprox. 65 km",
       travelTime: "1h15 a 1h40 de carro, dependendo da estrada e do trânsito",
     },
+    transportTip:
+      "Em Gramado, transporte por app e táxi funcionam bem na área central, mas em alta temporada vale chamar com antecedência.",
     seasonalTips:
       "Gramado costuma ter noites frias mesmo fora do inverno; leve uma camada extra para sair à noite.",
   },
@@ -172,6 +187,11 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 3 km",
         description: "área tranquila para contato com natureza no sul da ilha",
       },
+      {
+        name: "Ilha do Campeche",
+        distance: "saídas próximas na temporada",
+        description: "passeio de barco conhecido, sujeito a clima e disponibilidade",
+      },
     ],
     essentials: [
       {
@@ -192,6 +212,8 @@ const fallbackLocalGuides: Record<
       distance: "aprox. 10 km",
       travelTime: "15 a 30 min de carro, dependendo do trânsito",
     },
+    transportTip:
+      "No Campeche, transporte por app costuma funcionar bem, mas em dias de praia ou alta temporada pode demorar mais.",
     seasonalTips:
       "Para praia, prefira chegar cedo ao Campeche e confira a condição do vento antes de sair.",
   },
@@ -224,6 +246,11 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 4 km",
         description: "parada rápida para conhecer a cultura cervejeira local",
       },
+      {
+        name: "Parque Ramiro Ruediger",
+        distance: "aprox. 2 km",
+        description: "área verde boa para caminhada perto da região da Vila Germânica",
+      },
     ],
     essentials: [
       {
@@ -244,6 +271,8 @@ const fallbackLocalGuides: Record<
       distance: "aprox. 55 km",
       travelTime: "50 a 75 min de carro, dependendo da BR-470 e do trânsito",
     },
+    transportTip:
+      "Em Blumenau, transporte por app é uma boa opção; em dias de evento na Vila Germânica, planeje deslocamento com antecedência.",
     seasonalTips:
       "Em períodos de eventos na Vila Germânica, vale sair com antecedência e reservar restaurantes.",
   },
@@ -276,6 +305,11 @@ const fallbackLocalGuides: Record<
         distance: "aprox. 3 km",
         description: "bom passeio para caminhar e ver a orla",
       },
+      {
+        name: "Praia Central",
+        distance: "aprox. 300 m a 1 km, dependendo do ponto da orla",
+        description: "principal praia urbana para caminhar e aproveitar a beira-mar",
+      },
     ],
     essentials: [
       {
@@ -296,6 +330,8 @@ const fallbackLocalGuides: Record<
       distance: "aprox. 35 km",
       travelTime: "35 a 55 min de carro, dependendo do trânsito",
     },
+    transportTip:
+      "Em Balneário Camboriú, caminhar pela região central costuma ser prático; para Barra Sul, Unipraias e aeroporto, transporte por app é conveniente.",
     seasonalTips:
       "Na alta temporada, planeje deslocamentos com folga e prefira caminhar pela região central quando possível.",
   },
@@ -369,6 +405,18 @@ function buildFallbackAnswer(
 
   if (normalized.includes("check-in") || normalized.includes("checkin") || normalized.includes("entrar")) {
     return `O check-in pode ser feito a partir das ${formatHour(property.rules.check_in_time)}. ${property.operational.property_access_instructions}`;
+  }
+
+  if (isLocationIntent(normalized)) {
+    return buildLocalGuideOverview(property, guide, fallbackGuide);
+  }
+
+  if (isTransportIntent(normalized)) {
+    if (fallbackGuide?.transportTip) {
+      return `${fallbackGuide.transportTip} Para sair do imóvel, use como referência ${property.address.neighborhood}, ${property.address.city}/${property.address.state}. Rota no Google Maps: ${buildMapsUrl(getPropertyLocationQuery(property))}.`;
+    }
+
+    return `Para deslocamento, use como referência ${property.address.neighborhood}, ${property.address.city}/${property.address.state}. O tempo pode variar conforme trânsito e horário.`;
   }
 
   if (isAirportIntent(normalized)) {
@@ -459,6 +507,27 @@ function isEssentialIntent(message: string) {
   );
 }
 
+function isLocationIntent(message: string) {
+  return [
+    "onde fica",
+    "localizacao",
+    "localização",
+    "bairro",
+    "regiao",
+    "região",
+    "o que tem perto",
+    "perto do apartamento",
+    "perto da casa",
+    "arredores",
+  ].some((term) => message.includes(term));
+}
+
+function isTransportIntent(message: string) {
+  return ["uber", "taxi", "táxi", "transporte", "onibus", "ônibus", "carro", "deslocamento"].some(
+    (term) => message.includes(term),
+  );
+}
+
 function isAirportIntent(message: string) {
   return message.includes("aeroporto") || message.includes("airport");
 }
@@ -507,18 +576,21 @@ function buildLocalGuideOverview(
 ) {
   if (guide) {
     return [
-      `Para ${property.address.city}, recomendo restaurantes como ${formatPlaces(guide.restaurants.slice(0, 2))}.`,
-      `Para passear: ${formatPlaces(guide.attractions.slice(0, 2))}.`,
-      `Serviços úteis: ${formatPlaces(guide.essentials.slice(0, 2))}.`,
+      `Este imóvel fica em ${property.address.neighborhood}, ${property.address.city}/${property.address.state}.`,
+      `Para comer por perto: ${formatPlaces(guide.restaurants.slice(0, 3), property)}.`,
+      `Para passear: ${formatPlaces(guide.attractions.slice(0, 3), property)}.`,
+      `Serviços úteis: ${formatPlaces(guide.essentials.slice(0, 3), property)}.`,
       guide.seasonal_tips,
     ].join(" ");
   }
 
   if (fallbackGuide) {
     return [
-      `Para ${property.address.city}, recomendo restaurantes como ${formatPlaces(fallbackGuide.restaurants)}.`,
-      `Para passear: ${formatPlaces(fallbackGuide.attractions)}.`,
-      `Serviços úteis: ${formatPlaces(fallbackGuide.essentials)}.`,
+      `Este imóvel fica em ${property.address.neighborhood}, ${property.address.city}/${property.address.state}.`,
+      `Para comer por perto: ${formatPlaces(fallbackGuide.restaurants, property)}.`,
+      `Para passear: ${formatPlaces(fallbackGuide.attractions, property)}.`,
+      `Serviços úteis: ${formatPlaces(fallbackGuide.essentials, property)}.`,
+      fallbackGuide.transportTip,
       fallbackGuide.seasonalTips,
     ].join(" ");
   }

@@ -39,6 +39,8 @@ describe("buildChatSystemPrompt", () => {
     expect(prompt).toContain("Google Maps");
     expect(prompt).toContain("perguntas sobre aeroporto, distancia, deslocamento ou tempo de trajeto");
     expect(prompt).toContain("a partir do endereco do imovel atual");
+    expect(prompt).toContain("perguntas pequenas e praticas do hospede sobre o imovel atual");
+    expect(prompt).toContain("transporte por app/taxi");
   });
 });
 
