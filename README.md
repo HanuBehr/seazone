@@ -12,6 +12,9 @@ Códigos de avaliação:
 
 - `FLN001`
 - `CMP001`
+- `LAG001`
+- `JUR001`
+- `STO001`
 - `BNU001`
 - `BCA001`
 - `GRM001`
@@ -20,6 +23,9 @@ Links diretos:
 
 - https://seazone.vercel.app/FLN001
 - https://seazone.vercel.app/CMP001
+- https://seazone.vercel.app/LAG001
+- https://seazone.vercel.app/JUR001
+- https://seazone.vercel.app/STO001
 - https://seazone.vercel.app/BNU001
 - https://seazone.vercel.app/BCA001
 - https://seazone.vercel.app/GRM001

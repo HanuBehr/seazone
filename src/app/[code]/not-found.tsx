@@ -2,7 +2,16 @@ import Link from "next/link";
 
 import { SeazoneLogo } from "@/components/brand/seazone-logo";
 
-const exampleCodes = ["FLN001", "CMP001", "BNU001", "BCA001", "GRM001"];
+const exampleCodes = [
+  "FLN001",
+  "CMP001",
+  "LAG001",
+  "JUR001",
+  "STO001",
+  "BNU001",
+  "BCA001",
+  "GRM001",
+];
 
 export default function PropertyNotFound() {
   return (

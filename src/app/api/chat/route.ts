@@ -231,6 +231,195 @@ const fallbackLocalGuides: Record<
     seasonalTips:
       "Para praia, prefira chegar cedo ao Campeche e confira a condição do vento antes de sair.",
   },
+  LAG001: {
+    restaurants: [
+      {
+        name: "Books & Beers",
+        distance: "aprox. 500 m",
+        description: "bar e restaurante conhecido para jantar e petiscos na Lagoa",
+      },
+      {
+        name: "Marquês da Lagoa",
+        distance: "aprox. 700 m",
+        description: "opção tradicional para frutos do mar e pratos brasileiros",
+      },
+      {
+        name: "Pizzaria Nave Mãe",
+        distance: "aprox. 1 km",
+        description: "pizzaria casual e prática para jantar na região da Lagoa",
+      },
+    ],
+    attractions: [
+      {
+        name: "Centrinho da Lagoa",
+        distance: "aprox. 500 m",
+        description: "região com bares, cafés, restaurantes e movimento à noite",
+      },
+      {
+        name: "Mirante da Lagoa da Conceição",
+        distance: "aprox. 4 km",
+        description: "ponto clássico para vista panorâmica da Lagoa",
+      },
+      {
+        name: "Dunas da Joaquina",
+        distance: "aprox. 5 km",
+        description: "passeio aberto para fotos, caminhada e acesso à região da Joaquina",
+      },
+    ],
+    essentials: [
+      {
+        name: "Supermercado Magia Lagoa",
+        distance: "aprox. 900 m",
+        description: "mercado prático para compras da estadia",
+        type: "supermarket",
+      },
+      {
+        name: "Farmácia Panvel Lagoa da Conceição",
+        distance: "aprox. 700 m",
+        description: "farmácia próxima ao centrinho da Lagoa",
+        type: "pharmacy",
+      },
+    ],
+    airport: {
+      name: "Aeroporto Internacional de Florianópolis",
+      distance: "aprox. 18 km",
+      travelTime: "30 a 50 min de carro, dependendo do trânsito e da temporada",
+    },
+    transportTip:
+      "Na Lagoa da Conceição, caminhar pelo centrinho é prático; para praias como Joaquina, Mole e Barra da Lagoa, transporte por app costuma funcionar bem, mas pode demorar em alta temporada.",
+    localContext:
+      "A Lagoa da Conceição é uma das regiões mais conhecidas de Florianópolis, com vida noturna, restaurantes, cafés, esportes na água e acesso rápido às praias do leste da ilha.",
+    typicalFoodTip:
+      "Na Lagoa, frutos do mar, bares com petiscos e restaurantes casuais são boas escolhas; Books & Beers, Marquês da Lagoa e Pizzaria Nave Mãe são opções práticas para a região.",
+    seasonalTips:
+      "Na alta temporada, saia com antecedência para praias do leste; em dias de vento, a Lagoa pode ficar ótima para esportes e menos confortável para banho.",
+  },
+  JUR001: {
+    restaurants: [
+      {
+        name: "Ponto Restaurante Jurerê",
+        distance: "aprox. 800 m",
+        description: "opção conhecida para refeições e frutos do mar perto da praia",
+      },
+      {
+        name: "Jay Bistro",
+        distance: "aprox. 1 km",
+        description: "restaurante contemporâneo para jantar em Jurerê Internacional",
+      },
+      {
+        name: "Donna Jurerê Internacional",
+        distance: "aprox. 1,5 km",
+        description: "opção sofisticada à beira-mar, boa para jantar ou drinks",
+      },
+    ],
+    attractions: [
+      {
+        name: "Praia de Jurerê Internacional",
+        distance: "aprox. 600 m",
+        description: "praia urbana com mar calmo, beach clubs e boa estrutura",
+      },
+      {
+        name: "Open Shopping Jurerê",
+        distance: "aprox. 700 m",
+        description: "área aberta com lojas, cafés, restaurantes e eventos sazonais",
+      },
+      {
+        name: "Fortaleza de São José da Ponta Grossa",
+        distance: "aprox. 6 km",
+        description: "passeio histórico com vista para o norte da ilha",
+      },
+    ],
+    essentials: [
+      {
+        name: "Imperatriz Jurerê Internacional",
+        distance: "aprox. 1 km",
+        description: "supermercado completo para compras da estadia",
+        type: "supermarket",
+      },
+      {
+        name: "Panvel Jurerê Internacional",
+        distance: "aprox. 900 m",
+        description: "farmácia próxima ao Open Shopping e à região central de Jurerê",
+        type: "pharmacy",
+      },
+    ],
+    airport: {
+      name: "Aeroporto Internacional de Florianópolis",
+      distance: "aprox. 38 km",
+      travelTime: "45 a 75 min de carro, dependendo do trânsito e da temporada",
+    },
+    transportTip:
+      "Em Jurerê Internacional, caminhar funciona bem para praia, Open Shopping e restaurantes próximos; para centro, aeroporto e outras praias, use carro ou app com folga em alta temporada.",
+    localContext:
+      "Jurerê Internacional fica no norte de Florianópolis e é conhecido por praia com boa estrutura, ruas planejadas, beach clubs, restaurantes e perfil mais sofisticado.",
+    typicalFoodTip:
+      "Em Jurerê, frutos do mar, restaurantes à beira-mar e opções contemporâneas são boas escolhas; Ponto, Jay Bistro e Donna são referências úteis para a região.",
+    seasonalTips:
+      "No verão, reserve restaurantes e planeje deslocamentos com antecedência; fora da temporada, a região costuma ficar mais tranquila.",
+  },
+  STO001: {
+    restaurants: [
+      {
+        name: "Ostradamus",
+        distance: "aprox. 2 km",
+        description: "referência de ostras e frutos do mar em Santo Antônio de Lisboa",
+      },
+      {
+        name: "Marisqueira Sintra",
+        distance: "aprox. 1,5 km",
+        description: "restaurante português e de frutos do mar na orla do bairro",
+      },
+      {
+        name: "FairyLand Café",
+        distance: "aprox. 1 km",
+        description: "café agradável para passeio leve no bairro histórico",
+      },
+    ],
+    attractions: [
+      {
+        name: "Centro Histórico de Santo Antônio de Lisboa",
+        distance: "aprox. 1 km",
+        description: "casario açoriano, orla, lojas e restaurantes para caminhar",
+      },
+      {
+        name: "Igreja Nossa Senhora das Necessidades",
+        distance: "aprox. 1 km",
+        description: "ponto histórico clássico do bairro",
+      },
+      {
+        name: "Praia de Sambaqui",
+        distance: "aprox. 4 km",
+        description: "orla tranquila com pôr do sol e restaurantes de frutos do mar",
+      },
+    ],
+    essentials: [
+      {
+        name: "Supermercado Santo Antônio",
+        distance: "aprox. 1 km",
+        description: "mercado de bairro para compras rápidas",
+        type: "supermarket",
+      },
+      {
+        name: "Farmácia Santo Antônio de Lisboa",
+        distance: "aprox. 1 km",
+        description: "farmácia prática para itens básicos",
+        type: "pharmacy",
+      },
+    ],
+    airport: {
+      name: "Aeroporto Internacional de Florianópolis",
+      distance: "aprox. 28 km",
+      travelTime: "35 a 60 min de carro, dependendo do trânsito",
+    },
+    transportTip:
+      "Em Santo Antônio de Lisboa, carro ou transporte por app é mais prático para circular; a orla histórica é boa para caminhar depois de chegar.",
+    localContext:
+      "Santo Antônio de Lisboa é um bairro histórico de Florianópolis, conhecido pela herança açoriana, casario antigo, restaurantes de frutos do mar e pôr do sol na baía norte.",
+    typicalFoodTip:
+      "A região é ótima para ostras e frutos do mar; Ostradamus e Marisqueira Sintra são referências, e cafés locais funcionam bem para passeio no fim da tarde.",
+    seasonalTips:
+      "Para aproveitar o pôr do sol em Santo Antônio de Lisboa, chegue antes do horário de pico e confira reserva em restaurantes nos fins de semana.",
+  },
   BNU001: {
     restaurants: [
       {
