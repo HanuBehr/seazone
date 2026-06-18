@@ -513,6 +513,10 @@ function buildFallbackAnswer(
     return "Ainda não tenho uma dica sazonal cadastrada para este imóvel.";
   }
 
+  if (isPublicLocalIntent(normalized)) {
+    return buildLocalPublicAnswer(property, fallbackGuide);
+  }
+
   if (normalized.includes("telefone") || normalized.includes("anfitri") || normalized.includes("contato")) {
     return `O anfitrião é ${property.host.name}. O telefone é ${property.host.phone}.`;
   }
@@ -586,6 +590,54 @@ function isSeasonalIntent(message: string) {
   return ["dica", "sazonal", "temporada", "chuva", "frio", "calor"].some(
     (term) => message.includes(term),
   );
+}
+
+function isPublicLocalIntent(message: string) {
+  return [
+    "historia",
+    "historico",
+    "cultura",
+    "seguro",
+    "seguranca",
+    "segurança",
+    "noite",
+    "bar",
+    "cafe",
+    "cafeteria",
+    "museu",
+    "evento",
+    "crianca",
+    "criança",
+    "familia",
+    "família",
+    "compras",
+    "shopping",
+    "praia",
+    "parque",
+    "caminhar",
+    "andar",
+    "visitar",
+    "turismo",
+  ].some((term) => message.includes(term));
+}
+
+function buildLocalPublicAnswer(
+  property: Awaited<ReturnType<typeof getPropertyByCode>> extends infer T
+    ? NonNullable<T>
+    : never,
+  fallbackGuide: (typeof fallbackLocalGuides)[string] | undefined,
+) {
+  if (!fallbackGuide) {
+    return `Posso ajudar com perguntas públicas sobre ${property.address.neighborhood}, ${property.address.city}/${property.address.state}, além de acesso, WiFi, regras e contato deste imóvel.`;
+  }
+
+  return [
+    fallbackGuide.localContext,
+    `Para comer por perto: ${formatPlaces(fallbackGuide.restaurants, property)}.`,
+    `Para passear ou se localizar: ${formatPlaces(fallbackGuide.attractions, property)}.`,
+    `Para deslocamento: ${fallbackGuide.transportTip}`,
+    `Se a pergunta envolver horário, lotação, preço ou condição do dia, confira no Google Maps ou site oficial antes de sair.`,
+  ].join(" ");
 }
 
 function formatPlaces(

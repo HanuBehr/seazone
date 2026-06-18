@@ -25,9 +25,11 @@ describe("buildChatSystemPrompt", () => {
   it("allows public local knowledge without redirecting to the host", () => {
     const prompt = buildChatSystemPrompt(propertyFixture, experienceGuideFixture);
 
-    expect(prompt).toContain("informacoes publicas locais sobre a cidade");
+    expect(prompt).toContain("qualquer pergunta publica sobre a regiao do imovel atual");
     expect(prompt).toContain("historia, cultura, culinaria");
     expect(prompt).toContain("Nao mande o hospede falar com o anfitriao para perguntas publicas");
+    expect(prompt).toContain("responda como um assistente local normal");
+    expect(prompt).toContain("mesmo que o assunto nao esteja listado no GUIA DE EXPERIENCIAS");
   });
 
   it("locks recommendations to the current property location", () => {
