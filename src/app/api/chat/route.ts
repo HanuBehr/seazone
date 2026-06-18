@@ -10,6 +10,10 @@ import { getPropertyByCode } from "@/server/properties";
 
 export const runtime = "nodejs";
 
+function hasOpenAIKey() {
+  return process.env.OPENAI_API_KEY?.trim().startsWith("sk-") ?? false;
+}
+
 const chatRequestSchema = z.object({
   propertyCode: z.string().min(1),
   messages: z.array(
@@ -261,7 +265,7 @@ export async function POST(request: Request) {
 
   const guide = await getExperienceGuideForProperty(property.id).catch(() => null);
 
-  if (!process.env.OPENAI_API_KEY) {
+  if (!hasOpenAIKey()) {
     const lastUserMessage = [...body.data.messages]
       .reverse()
       .find((message) => message.role === "user")?.content;

@@ -5,6 +5,10 @@ import { getPropertyByCode } from "@/server/properties";
 
 export const runtime = "nodejs";
 
+function hasOpenAIKey() {
+  return process.env.OPENAI_API_KEY?.trim().startsWith("sk-") ?? false;
+}
+
 type RouteParams = {
   params: Promise<{ code: string }>;
 };
@@ -41,7 +45,7 @@ export async function POST(_request: Request, { params }: RouteParams) {
     update: { status: "PENDING", errorMessage: null },
   });
 
-  if (!process.env.OPENAI_API_KEY) {
+  if (!hasOpenAIKey()) {
     await prisma.experienceGuide.update({
       where: { propertyId: property.id },
       data: {
