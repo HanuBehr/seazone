@@ -66,15 +66,15 @@ export function PropertyCodeForm() {
 
       <div
         id="property-code-examples"
-        className="mt-4 flex flex-wrap items-center gap-2 text-xs text-muted"
+        className="seazone-scroll -mx-4 mt-4 flex items-center gap-2 overflow-x-auto px-4 pb-1 text-xs text-muted sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0"
       >
-        <span>Exemplos para teste:</span>
+        <span className="shrink-0">Exemplos para teste:</span>
         {exampleCodes.map((code) => (
           <button
             key={code}
             type="button"
             onClick={() => setPropertyCode(code)}
-            className="rounded-full border border-line bg-surface px-3 py-1.5 font-semibold text-navy transition hover:border-coral hover:bg-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50 focus-visible:ring-offset-2"
+            className="shrink-0 rounded-full border border-line bg-surface px-3 py-1.5 font-semibold text-navy transition hover:border-coral hover:bg-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50 focus-visible:ring-offset-2"
           >
             {code}
           </button>

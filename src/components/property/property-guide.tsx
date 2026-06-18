@@ -20,7 +20,7 @@ export function PropertyGuide({
   const shouldSkipOptimization = heroImage?.includes("upload.wikimedia.org") ?? false;
 
   return (
-    <main className="seazone-shell min-h-screen pb-24 text-ink">
+    <main className="seazone-shell min-h-screen pb-28 text-ink sm:pb-24">
       <section className="relative isolate overflow-hidden bg-navy text-white">
         {heroImage ? (
           <Image
@@ -35,7 +35,7 @@ export function PropertyGuide({
         ) : null}
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-navy via-navy/78 to-navy/28" />
 
-        <div className="relative z-20 mx-auto flex min-h-[560px] max-w-7xl flex-col px-5 py-7 sm:px-8 lg:px-10">
+        <div className="relative z-20 mx-auto flex min-h-[460px] max-w-7xl flex-col px-4 py-5 sm:min-h-[560px] sm:px-8 sm:py-7 lg:px-10">
           <header className="flex items-center">
             <Link
               href="/"
@@ -46,13 +46,13 @@ export function PropertyGuide({
             </Link>
           </header>
 
-          <div className="flex flex-1 flex-col justify-center pb-2 pt-6 sm:pt-8">
-            <div className="max-w-3xl space-y-5">
-              <h1 className="text-[clamp(3rem,7vw,5.5rem)] font-semibold leading-[0.98] tracking-[-0.055em]">
+          <div className="flex flex-1 flex-col justify-center pb-2 pt-5 sm:pt-8">
+            <div className="max-w-3xl space-y-4 sm:space-y-5">
+              <h1 className="text-[clamp(2.35rem,13vw,5.5rem)] font-semibold leading-[0.98] tracking-[-0.055em]">
                 {property.name}
               </h1>
-              <p className="flex items-center gap-2 text-lg text-white/88">
-                <MapPin className="h-5 w-5 shrink-0 text-orange" aria-hidden />
+              <p className="flex items-center gap-2 text-base text-white/88 sm:text-lg">
+                <MapPin className="h-4 w-4 shrink-0 text-orange sm:h-5 sm:w-5" aria-hidden />
                 <span className="min-w-0 break-words">
                   {property.address.neighborhood}, {property.address.city}/
                   {property.address.state}
@@ -60,7 +60,7 @@ export function PropertyGuide({
               </p>
             </div>
 
-            <dl className="mt-8 grid gap-3 sm:max-w-2xl sm:grid-cols-3">
+            <dl className="mt-6 grid grid-cols-3 gap-2 sm:mt-8 sm:max-w-2xl sm:gap-3">
               <HeroStat
                 icon={<Users className="h-4 w-4" aria-hidden />}
                 label="Hóspedes"
@@ -82,7 +82,7 @@ export function PropertyGuide({
       </section>
 
       <nav className="sticky top-0 z-30 border-b border-line bg-cream/85 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl min-w-0 gap-2 overflow-x-auto seazone-scroll px-5 py-3 sm:px-8 lg:px-10">
+        <div className="mx-auto flex max-w-7xl min-w-0 gap-1.5 overflow-x-auto seazone-scroll px-4 py-2.5 sm:gap-2 sm:px-8 sm:py-3 lg:px-10">
           <NavPill href="#acesso">Acesso</NavPill>
           <NavPill href="#regras">Regras</NavPill>
           <NavPill href="#experiencias">Experiências</NavPill>
@@ -90,8 +90,8 @@ export function PropertyGuide({
         </div>
       </nav>
 
-      <div className="mx-auto grid max-w-7xl gap-5 px-5 py-8 sm:px-8 lg:grid-cols-[1.3fr_0.7fr] lg:px-10">
-        <div className="space-y-5">
+      <div className="mx-auto grid max-w-7xl gap-5 px-4 py-6 sm:px-8 sm:py-8 lg:grid-cols-[1.3fr_0.7fr] lg:px-10">
+        <div className="space-y-4 sm:space-y-5">
           <ArrivalEssentials property={property} />
           <HouseRules property={property} />
           <ExperienceGuideSection
@@ -113,7 +113,7 @@ function NavPill({ href, children }: { href: string; children: ReactNode }) {
   return (
     <a
       href={href}
-      className="shrink-0 rounded-full px-4 py-1.5 text-sm font-semibold text-muted transition hover:bg-coral-soft hover:text-coral focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50"
+      className="shrink-0 rounded-full px-3 py-1.5 text-sm font-semibold text-muted transition hover:bg-coral-soft hover:text-coral focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50 sm:px-4"
     >
       {children}
     </a>
@@ -130,12 +130,12 @@ function HeroStat({
   value: string;
 }) {
   return (
-    <div className="rounded-panel border border-white/20 bg-white/15 px-4 py-4 backdrop-blur">
-      <dt className="flex items-center gap-1.5 text-xs font-medium text-white/70">
+    <div className="rounded-panel border border-white/20 bg-white/15 px-3 py-3 backdrop-blur sm:px-4 sm:py-4">
+      <dt className="flex items-center gap-1 text-[11px] font-medium text-white/70 sm:gap-1.5 sm:text-xs">
         {icon}
         {label}
       </dt>
-      <dd className="mt-1 text-2xl font-semibold leading-none">{value}</dd>
+      <dd className="mt-1 text-xl font-semibold leading-none sm:text-2xl">{value}</dd>
     </div>
   );
 }

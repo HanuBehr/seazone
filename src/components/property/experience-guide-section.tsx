@@ -97,7 +97,7 @@ export function ExperienceGuideSection({
   }
 
   return (
-    <section id="experiencias" className="scroll-mt-24 border-b border-line bg-transparent pb-8">
+    <section id="experiencias" className="scroll-mt-24 border-b border-line bg-transparent pb-6 sm:pb-8">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <SectionTitle
           eyebrow="Guia de experiências"
@@ -113,7 +113,7 @@ export function ExperienceGuideSection({
       {state.status === "loading" ? <LoadingGuide /> : null}
 
       {state.status === "error" ? (
-        <div className="mt-5 rounded-panel border border-line bg-surface/85 p-4 sm:p-5">
+        <div className="mt-4 rounded-panel border border-line bg-surface/85 p-3 sm:mt-5 sm:p-5">
           <div className="flex gap-3">
             <span className="grid h-9 w-9 shrink-0 place-items-center rounded-field bg-coral-soft text-coral">
               <AlertCircle className="h-5 w-5" aria-hidden />
@@ -141,7 +141,7 @@ export function ExperienceGuideSection({
 
 function LoadingGuide() {
   return (
-    <div className="mt-4 rounded-panel border border-line bg-surface/85 p-4" aria-live="polite">
+    <div className="mt-4 rounded-panel border border-line bg-surface/85 p-3 sm:p-4" aria-live="polite">
       <div className="flex items-start gap-3">
         <span className="grid h-9 w-9 shrink-0 place-items-center rounded-field bg-coral-soft text-coral">
           <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
@@ -164,10 +164,10 @@ function LoadingGuide() {
 
 function GuideContent({ guide }: { guide: ExperienceGuide }) {
   return (
-    <div className="mt-4 rounded-panel border border-line bg-surface/85 p-4 sm:p-5">
+    <div className="mt-4 rounded-panel border border-line bg-surface/85 p-3 sm:p-5">
       <p className="text-sm leading-6 text-muted">{guide.welcome_message}</p>
 
-      <div className="mt-5 grid gap-6 lg:grid-cols-2">
+      <div className="mt-4 grid gap-5 sm:mt-5 sm:gap-6 lg:grid-cols-2">
         <GuideGroup
           title="Restaurantes próximos"
           icon={<Utensils className="h-4 w-4" aria-hidden />}
@@ -181,7 +181,7 @@ function GuideContent({ guide }: { guide: ExperienceGuide }) {
         />
       </div>
 
-      <div className="mt-5 border-t border-line pt-4">
+      <div className="mt-4 border-t border-line pt-4 sm:mt-5">
         <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-coral">
           Serviços essenciais
         </h3>
@@ -201,7 +201,7 @@ function GuideContent({ guide }: { guide: ExperienceGuide }) {
         </ul>
       </div>
 
-      <div className="mt-5 rounded-field bg-coral-soft/60 px-4 py-3 text-sm leading-6">
+      <div className="mt-4 rounded-field bg-coral-soft/60 px-3 py-2.5 text-sm leading-6 sm:mt-5 sm:px-4 sm:py-3">
         <span className="font-semibold text-navy">Dica sazonal: </span>
         <span className="text-muted">{guide.seasonal_tips}</span>
       </div>

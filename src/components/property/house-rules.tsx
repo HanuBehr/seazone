@@ -70,17 +70,17 @@ export function HouseRules({ property }: { property: Property }) {
   return (
     <section
       id="regras"
-      className="scroll-mt-24 border-b border-line bg-transparent pb-8"
+      className="scroll-mt-24 border-b border-line bg-transparent pb-6 sm:pb-8"
     >
       <SectionTitle eyebrow="Regras da estadia" title="Políticas do imóvel" />
-      <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+      <ul className="mt-4 grid gap-2.5 sm:mt-5 sm:gap-3 sm:grid-cols-2">
         {items.map((rule) => {
           const Icon = rule.icon;
           const StatusIcon = rule.allowed ? Check : X;
           return (
             <li
               key={rule.text}
-                className="flex items-center gap-3 rounded-panel border border-line bg-surface/85 p-4"
+                className="flex items-center gap-3 rounded-panel border border-line bg-surface/85 p-3 sm:p-4"
             >
               <span
                 className={`grid h-9 w-9 shrink-0 place-items-center rounded-field ${

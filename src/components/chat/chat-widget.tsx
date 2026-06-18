@@ -131,8 +131,8 @@ export function ChatWidget({
   return (
     <>
       {isOpen ? (
-        <div className="fixed inset-x-3 bottom-3 z-50 mx-auto flex max-h-[85dvh] max-w-md flex-col overflow-hidden rounded-card border border-line bg-surface shadow-pop pb-[env(safe-area-inset-bottom)] sm:inset-x-auto sm:right-5 sm:bottom-5 sm:w-[400px]">
-          <div className="flex items-center justify-between gap-3 bg-navy px-5 py-4 text-white">
+        <div className="fixed inset-x-2 bottom-2 z-50 mx-auto flex max-h-[calc(100dvh-1rem)] max-w-md flex-col overflow-hidden rounded-card border border-line bg-surface shadow-pop pb-[env(safe-area-inset-bottom)] sm:inset-x-auto sm:right-5 sm:bottom-5 sm:max-h-[85dvh] sm:w-[400px]">
+          <div className="flex items-center justify-between gap-3 bg-navy px-4 py-3.5 text-white sm:px-5 sm:py-4">
             <div className="flex min-w-0 items-center gap-3">
               <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-field bg-orange">
                 <Image
@@ -164,7 +164,7 @@ export function ChatWidget({
 
           <div
             ref={scrollRef}
-            className="seazone-scroll flex-1 space-y-3 overflow-y-auto bg-cream p-4"
+            className="seazone-scroll flex-1 space-y-2.5 overflow-y-auto bg-cream p-3 sm:space-y-3 sm:p-4"
             role="log"
             aria-live="polite"
             aria-relevant="additions text"
@@ -174,8 +174,8 @@ export function ChatWidget({
                 key={index}
                 className={
                   message.role === "user"
-                    ? "ml-auto max-w-[85%] rounded-panel rounded-br-md bg-navy px-4 py-3 text-sm leading-6 text-white"
-                    : "mr-auto max-w-[85%] rounded-panel rounded-bl-md border border-line bg-surface px-4 py-3 text-sm leading-6 text-ink shadow-card"
+                    ? "ml-auto max-w-[92%] rounded-panel rounded-br-md bg-navy px-3 py-2.5 text-sm leading-6 text-white sm:max-w-[85%] sm:px-4 sm:py-3"
+                    : "mr-auto max-w-[92%] rounded-panel rounded-bl-md border border-line bg-surface px-3 py-2.5 text-sm leading-6 text-ink shadow-card sm:max-w-[85%] sm:px-4 sm:py-3"
                 }
               >
                 {message.content ? (
@@ -187,15 +187,15 @@ export function ChatWidget({
             ))}
           </div>
 
-          <div className="border-t border-line bg-surface p-4">
-            <div className="mb-3 flex flex-wrap gap-2">
+          <div className="border-t border-line bg-surface p-3 sm:p-4">
+            <div className="seazone-scroll -mx-3 mb-3 flex gap-2 overflow-x-auto px-3 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
               {suggestions.map((suggestion) => (
                 <button
                   type="button"
                   key={suggestion}
                   onClick={() => sendMessage(suggestion)}
                   disabled={isStreaming}
-                  className="rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-semibold text-navy transition hover:border-coral hover:bg-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="shrink-0 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-semibold text-navy transition hover:border-coral hover:bg-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {suggestion}
                 </button>
@@ -211,12 +211,12 @@ export function ChatWidget({
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 placeholder="Pergunte sobre sua estadia"
-                className="min-w-0 flex-1 rounded-field border border-line bg-cream px-4 py-3 text-base text-ink outline-none transition placeholder:text-muted focus:border-coral focus:bg-surface"
+                className="min-w-0 flex-1 rounded-field border border-line bg-cream px-3 py-2.5 text-base text-ink outline-none transition placeholder:text-muted focus:border-coral focus:bg-surface sm:px-4 sm:py-3"
               />
               <button
                 type="submit"
                 disabled={isStreaming || !input.trim()}
-                className="flex shrink-0 items-center justify-center rounded-field bg-coral px-3.5 text-white transition hover:bg-coral-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+                className="flex shrink-0 items-center justify-center rounded-field bg-coral px-3 text-white transition hover:bg-coral-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 sm:px-3.5"
                 aria-label="Enviar mensagem"
               >
                 <Send className="h-5 w-5" aria-hidden />
@@ -227,7 +227,7 @@ export function ChatWidget({
       ) : null}
 
       {!isOpen ? (
-        <div className="fixed right-4 bottom-4 z-40 flex flex-col items-end gap-2 mb-[env(safe-area-inset-bottom)]">
+        <div className="fixed right-3 bottom-3 z-40 mb-[env(safe-area-inset-bottom)] flex flex-col items-end gap-2 sm:right-4 sm:bottom-4">
           {hasUnreadIntro ? (
             <button
               type="button"
@@ -235,7 +235,7 @@ export function ChatWidget({
                 setIsOpen(true);
                 setHasUnreadIntro(false);
               }}
-              className="relative max-w-[260px] rounded-panel border border-line bg-surface px-4 py-3 text-left text-sm font-semibold leading-5 text-navy shadow-pop transition hover:-translate-y-0.5 hover:border-coral focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50"
+              className="relative max-w-[230px] rounded-panel border border-line bg-surface px-3.5 py-2.5 text-left text-sm font-semibold leading-5 text-navy shadow-pop transition hover:-translate-y-0.5 hover:border-coral focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50 sm:max-w-[260px] sm:px-4 sm:py-3"
             >
               Precisa de ajuda com WiFi, acesso ou dicas locais?
               <span className="absolute -bottom-1.5 right-6 h-3 w-3 rotate-45 border-b border-r border-line bg-surface" />
