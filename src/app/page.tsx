@@ -99,9 +99,66 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <section className="mx-auto max-w-[1120px] pb-12 sm:pb-16">
+        <div className="rounded-card border border-line bg-navy p-5 text-white shadow-raised sm:p-7 lg:p-8">
+          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange">
+                Built like a product
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-[-0.035em] sm:text-3xl">
+                Full-stack hospitality workflow, not a static brochure
+              </h2>
+              <p className="mt-4 text-sm leading-6 text-white/72 sm:text-base sm:leading-7">
+                The demo combines persisted property data, fake reservation
+                context, structured AI generation, and a streaming concierge
+                with deterministic fallbacks for operational questions.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {architectureHighlights.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-panel border border-white/12 bg-white/8 p-4 backdrop-blur"
+                >
+                  <p className="text-sm font-semibold text-white">{item.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-white/68">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
+
+const architectureHighlights = [
+  {
+    title: "Next.js + React",
+    description:
+      "Dynamic guide routes, server-loaded context, responsive client chat, and production build checks.",
+  },
+  {
+    title: "PostgreSQL + Prisma",
+    description:
+      "Property, reservation, and generated local-guide models with migrations and repeatable seed data.",
+  },
+  {
+    title: "AI SDK + OpenAI",
+    description:
+      "Structured local guide generation, persisted outputs, and streaming concierge responses.",
+  },
+  {
+    title: "Zod + Vitest",
+    description:
+      "Runtime validation for AI/database boundaries and tests for prompts, formatting, and fallback answers.",
+  },
+] as const;
 
 function ArrivalSupportVisual() {
   return (
