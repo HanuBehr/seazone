@@ -9,6 +9,7 @@ import { DemoDisclosure } from "@/components/demo/demo-disclosure";
 import { ArrivalEssentials } from "@/components/property/arrival-essentials";
 import { ExperienceGuideSection } from "@/components/property/experience-guide-section";
 import { HouseRules } from "@/components/property/house-rules";
+import { ShareGuideButton } from "@/components/property/share-guide-button";
 import { StaySummary } from "@/components/property/stay-summary";
 import type { Property } from "@/lib/validators/property";
 import type { Reservation } from "@/lib/validators/reservation";
@@ -82,6 +83,13 @@ export function PropertyGuide({
                 value={String(property.bathroomQuantity)}
               />
             </dl>
+
+            <div className="mt-5 sm:mt-6">
+              <ShareGuideButton
+                propertyCode={property.code}
+                propertyName={property.name}
+              />
+            </div>
           </div>
         </div>
       </section>
