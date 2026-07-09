@@ -22,6 +22,7 @@ Demo codes:
 ## Product Features
 
 - Dynamic guest guides by property code at `/[code]`
+- Read-only operator dashboard at `/operator`
 - Property photos, address, capacity, amenities, and host contact details
 - Arrival essentials: WiFi, access instructions, check-in, check-out, and parking
 - Demo reservation context: reservation code, guest name, stay dates, cleaning fee, currency, and status
@@ -65,6 +66,8 @@ prisma
 ```
 
 The guide page loads property and reservation context server-side. The local guide section calls an API route that generates a structured guide with OpenAI, validates it with Zod, and persists it in PostgreSQL. The chat route streams an AI answer using the property, reservation, and generated guide as context. If the AI key is unavailable, deterministic fallback responses still answer core operational questions.
+
+The operator dashboard is a read-only product surface that summarizes the demo portfolio, markets, guide inventory, and operational product signals for rental managers.
 
 ## AI Behavior
 

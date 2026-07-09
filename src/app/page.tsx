@@ -37,6 +37,15 @@ export default function Home() {
               Demo portfolio · PostgreSQL persistence · Streaming AI assistant
             </p>
 
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link
+                href="/operator"
+                className="inline-flex rounded-field border border-line bg-surface px-4 py-2.5 text-sm font-semibold text-navy shadow-card transition hover:border-coral hover:bg-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50"
+              >
+                View operator dashboard
+              </Link>
+            </div>
+
             <div className="mt-4 max-w-lg">
               <DemoDisclosure compact />
             </div>
