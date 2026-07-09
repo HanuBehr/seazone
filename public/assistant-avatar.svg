@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="AI concierge avatar">
+  <rect width="96" height="96" rx="28" fill="#06243d"/>
+  <circle cx="48" cy="38" r="18" fill="#fbf9f4"/>
+  <circle cx="41" cy="36" r="3" fill="#06243d"/>
+  <circle cx="55" cy="36" r="3" fill="#06243d"/>
+  <path d="M40 47c4 4 12 4 16 0" stroke="#06243d" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M22 79c4-15 15-24 26-24s22 9 26 24" fill="#ff6b5f"/>
+  <path d="M67 19l4-8 4 8 8 4-8 4-4 8-4-8-8-4 8-4z" fill="#ff8a1c"/>
+</svg>

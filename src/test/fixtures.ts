@@ -1,5 +1,6 @@
 import type { ExperienceGuide } from "@/lib/validators/experience-guide";
 import type { Property } from "@/lib/validators/property";
+import type { Reservation } from "@/lib/validators/reservation";
 
 export const propertyFixture: Property = {
   id: "property-syd001",
@@ -118,4 +119,17 @@ export const experienceGuideFixture: ExperienceGuide = {
   ],
   seasonal_tips:
     "Sydney evenings near the harbour can be breezy, so bring a light layer for waterfront walks.",
+};
+
+export const reservationFixture: Reservation = {
+  id: "reservation-syd001",
+  propertyId: propertyFixture.id,
+  reservationCode: "RSV-SYD-24091",
+  guestName: "Amelia Hart",
+  checkInDate: new Date("2026-08-12T15:00:00.000Z"),
+  checkOutDate: new Date("2026-08-17T11:00:00.000Z"),
+  guestCount: 4,
+  cleaningFee: 145,
+  currency: "AUD",
+  status: "confirmed",
 };

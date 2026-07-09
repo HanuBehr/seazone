@@ -2,7 +2,7 @@
 
 AI-powered guest guides for short-term rental operators.
 
-Guests open a property-specific guide, review arrival instructions, house rules, amenities, host contact details, AI-generated local recommendations, and chat with a streaming virtual concierge that understands the current property context.
+StayPilot AI is a portfolio-grade rental guest experience app inspired by the operational problems behind Airbnb-style hospitality: guests need arrival instructions, property rules, reservation details, and local recommendations in one reliable place. Each property has its own guide, persisted AI-generated local content, and a streaming virtual concierge that answers from the current property and reservation context.
 
 ## Live Demo
 
@@ -10,40 +10,81 @@ Production is deployed on Vercel.
 
 Demo codes:
 
-- `SYD001`
-- `BLI001`
-- `NYG001`
-- `MEL001`
-- `TYO001`
-- `SFO001`
-- `RIO001`
-- `LIS001`
+- `SYD001` - Sydney harbour apartment
+- `BLI001` - Bali beach villa
+- `NYG001` - Greenwich Village condo
+- `MEL001` - Melbourne CBD apartment
+- `TYO001` - Tokyo micro studio
+- `SFO001` - San Francisco townhouse
+- `RIO001` - Rio de Janeiro ocean-view flat
+- `LIS001` - Lisbon terrace apartment
 
-The demo dataset includes fictional stays in Sydney, Bali, New York, Melbourne, Tokyo, San Francisco, Rio de Janeiro, and Lisbon.
-
-## Stack
-
-- Next.js 16 App Router
-- React 19
-- TypeScript
-- Tailwind CSS v4
-- PostgreSQL
-- Prisma ORM
-- OpenAI via Vercel AI SDK
-- Zod
-- Vitest
-- Vercel
-
-## Features
+## Product Features
 
 - Dynamic guest guides by property code at `/[code]`
 - Property photos, address, capacity, amenities, and host contact details
 - Arrival essentials: WiFi, access instructions, check-in, check-out, and parking
-- House rules for pets, smoking, children, babies, and events
-- AI-generated local guide persisted in PostgreSQL
-- Streaming virtual concierge with property and local-guide context
-- Friendly invalid-code page
-- Mobile-first responsive layout
+- Demo reservation context: reservation code, guest name, stay dates, cleaning fee, currency, and status
+- AI-generated local guide with restaurants, attractions, essential services, and seasonal tips
+- Persisted local guide content in PostgreSQL to avoid regenerating on every visit
+- Streaming virtual concierge powered by the Vercel AI SDK
+- Strict assistant behavior: no invented private details, fees, codes, rules, or contacts
+- Friendly invalid-code page and mobile-first responsive UI
+
+## Stack
+
+- **Next.js 16 App Router** for dynamic routes, server-rendered guide pages, and API routes
+- **React 19** for interactive client components and the streaming chat widget
+- **TypeScript** for typed application boundaries and safer refactors
+- **Tailwind CSS v4** for custom design tokens and responsive product UI
+- **PostgreSQL** for persistent property, reservation, and generated guide data
+- **Prisma 7** for schema modeling, migrations, generated client, and seed workflow
+- **Vercel AI SDK** for structured object generation and streaming assistant responses
+- **OpenAI** for local guide generation and real-time concierge responses
+- **Zod** for runtime validation of database JSON, API input, and AI output
+- **Vitest** for unit tests around formatting, prompts, and generated-guide validation
+- **Vercel** for production deployment
+
+## Architecture
+
+```txt
+src/app
+  App Router pages and API routes
+
+src/components
+  UI, guest guide, property, reservation, and chat components
+
+src/lib
+  Prisma client, validators, formatting helpers, and AI prompts
+
+src/server
+  Server-side property, reservation, and experience-guide data access
+
+prisma
+  PostgreSQL schema, migrations, and international demo seed data
+```
+
+The guide page loads property and reservation context server-side. The local guide section calls an API route that generates a structured guide with OpenAI, validates it with Zod, and persists it in PostgreSQL. The chat route streams an AI answer using the property, reservation, and generated guide as context. If the AI key is unavailable, deterministic fallback responses still answer core operational questions.
+
+## AI Behavior
+
+The assistant is intentionally constrained:
+
+- It can answer operational questions from property data, such as WiFi, access, check-in, check-out, parking, pets, and host contact.
+- It can answer booking-specific questions from reservation data, such as reservation code and cleaning fee.
+- It can answer local public questions using the generated local guide and safe location-bound knowledge.
+- It must refuse or clarify when private data is not present instead of inventing details.
+- It includes Google Maps search links when recommending real local places.
+
+## Data Model
+
+Core models:
+
+- `Property`: property code, name, type, capacity, address, operational details, rules, amenities, images, and host information
+- `Reservation`: fake demo booking data connected to a property, including reservation code, guest, dates, guest count, cleaning fee, currency, and status
+- `ExperienceGuide`: persisted AI-generated local recommendations with generation status and error state
+
+The demo data is fictional and safe for a public repository.
 
 ## Local Setup
 
@@ -90,25 +131,6 @@ npm run prisma:deploy
 npm run db:seed
 ```
 
-## Project Structure
-
-```txt
-src/app
-  App Router pages and API routes
-
-src/components
-  UI, guest guide, property, and chat components
-
-src/lib
-  Prisma client, validation, formatting, and AI prompts
-
-src/server
-  Server-side property and experience-guide access
-
-prisma
-  PostgreSQL schema, migrations, and seed data
-```
-
 ## Verification
 
 ```bash
@@ -117,3 +139,11 @@ npx tsc --noEmit
 npm run test
 npm run build
 ```
+
+## Next Improvements
+
+- Replace the temporary product name once final branding is selected
+- Add authenticated owner/admin workflows for managing properties and reservations
+- Add tokenized guest access links so private arrival details are not public by code alone
+- Add integration tests for chat API fallback behavior
+- Add map previews and richer local-guide cards

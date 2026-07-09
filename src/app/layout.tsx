@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   description:
     "AI-powered guest guides with property details, local recommendations, and a streaming concierge assistant.",
   icons: {
-    icon: "/icon.png",
-    shortcut: "/icon.png",
-    apple: "/icon.png",
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
   },
   robots: {
     index: true,

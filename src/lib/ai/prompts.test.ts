@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 
 import { buildChatSystemPrompt, buildExperienceGuidePrompt } from "@/lib/ai/prompts";
-import { experienceGuideFixture, propertyFixture } from "@/test/fixtures";
+import {
+  experienceGuideFixture,
+  propertyFixture,
+  reservationFixture,
+} from "@/test/fixtures";
 
 describe("buildChatSystemPrompt", () => {
   it("includes the critical property facts required by the chat", () => {
@@ -53,6 +57,19 @@ describe("buildChatSystemPrompt", () => {
     expect(prompt).toContain("from the current property address");
     expect(prompt).toContain("practical guest questions about this property");
     expect(prompt).toContain("ride-share/taxi");
+  });
+
+  it("includes reservation facts only when reservation context is available", () => {
+    const prompt = buildChatSystemPrompt(
+      propertyFixture,
+      experienceGuideFixture,
+      reservationFixture,
+    );
+
+    expect(prompt).toContain("Reservation code: RSV-SYD-24091");
+    expect(prompt).toContain("Guest name: Amelia Hart");
+    expect(prompt).toContain("Cleaning fee: A$145.00");
+    expect(prompt).toContain("Use reservation data only when it is explicitly present");
   });
 });
 

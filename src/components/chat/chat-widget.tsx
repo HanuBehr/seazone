@@ -136,7 +136,7 @@ export function ChatWidget({
             <div className="flex min-w-0 items-center gap-3">
               <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-field bg-orange">
                 <Image
-                  src="/assistant-avatar.png"
+                  src="/assistant-avatar.svg"
                   alt="StayPilot AI concierge"
                   fill
                   sizes="40px"
@@ -156,7 +156,7 @@ export function ChatWidget({
               type="button"
               onClick={() => setIsOpen(false)}
               className="-mr-1 shrink-0 rounded-full p-2 text-white/80 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-              aria-label="Fechar chat"
+                aria-label="Close chat"
             >
               <X className="h-5 w-5" aria-hidden />
             </button>
@@ -258,7 +258,7 @@ export function ChatWidget({
             ) : null}
             <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full bg-orange sm:h-8 sm:w-8">
               <Image
-                src="/assistant-avatar.png"
+                src="/assistant-avatar.svg"
                 alt=""
                 fill
                 sizes="36px"
