@@ -172,8 +172,10 @@ function GuideContent({
   location: string;
 }) {
   return (
-    <div className="mt-4 rounded-panel border border-line bg-surface/85 p-3 sm:p-5">
-      <p className="text-sm leading-6 text-muted">{guide.welcome_message}</p>
+    <div className="mt-4 rounded-card border border-line bg-surface/90 p-3 shadow-card sm:p-5">
+      <p className="rounded-panel bg-cream/70 p-3 text-sm leading-6 text-muted sm:p-4">
+        {guide.welcome_message}
+      </p>
 
       <div className="mt-4 grid gap-5 sm:mt-5 sm:gap-6 lg:grid-cols-2">
         <GuideGroup
@@ -191,13 +193,13 @@ function GuideContent({
         />
       </div>
 
-      <div className="mt-4 border-t border-line pt-4 sm:mt-5">
+      <div className="mt-5 rounded-panel border border-line bg-cream/55 p-3 sm:p-4">
         <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-coral">
           Essential services
         </h3>
-        <ul className="mt-3 grid gap-x-5 gap-y-3 sm:grid-cols-2">
+        <ul className="mt-3 grid gap-3 sm:grid-cols-2">
           {guide.essentials.map((service) => (
-            <li key={`${service.name}-${service.distance}`} className="min-w-0">
+            <li key={`${service.name}-${service.distance}`} className="min-w-0 rounded-field border border-line bg-surface p-3">
               <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                 <p className="font-semibold text-navy">{service.name}</p>
                 <span className="text-xs font-semibold text-coral">{service.distance}</span>
@@ -212,7 +214,7 @@ function GuideContent({
         </ul>
       </div>
 
-      <div className="mt-4 rounded-field bg-coral-soft/60 px-3 py-2.5 text-sm leading-6 sm:mt-5 sm:px-4 sm:py-3">
+      <div className="mt-4 rounded-panel border border-coral/20 bg-coral-soft/70 px-3 py-2.5 text-sm leading-6 sm:mt-5 sm:px-4 sm:py-3">
         <span className="font-semibold text-navy">Seasonal tip: </span>
         <span className="text-muted">{guide.seasonal_tips}</span>
       </div>
@@ -237,10 +239,10 @@ function GuideGroup({
         <span className="grid h-7 w-7 place-items-center rounded-field bg-coral-soft text-coral">{icon}</span>
         {title}
       </h3>
-      <ol className="mt-3 divide-y divide-line">
+      <ol className="mt-3 grid gap-3">
         {places.map((place, index) => (
-          <li key={`${place.name}-${place.distance}`} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-3 py-3 first:pt-0 last:pb-0">
-            <span className="text-xs font-semibold text-coral">{String(index + 1).padStart(2, "0")}</span>
+          <li key={`${place.name}-${place.distance}`} className="grid grid-cols-[2.25rem_minmax(0,1fr)] gap-3 rounded-panel border border-line bg-surface p-3 shadow-card">
+            <span className="grid h-8 w-8 place-items-center rounded-field bg-coral-soft text-xs font-semibold text-coral">{String(index + 1).padStart(2, "0")}</span>
             <div className="min-w-0">
               <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                 <p className="font-semibold text-navy">{place.name}</p>
@@ -262,7 +264,7 @@ function MapsLink({ placeName, location }: { placeName: string; location: string
       href={buildMapsUrl(`${placeName} ${location}`)}
       target="_blank"
       rel="noreferrer"
-      className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1 text-xs font-semibold text-navy transition hover:border-coral hover:bg-coral-soft hover:text-coral focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50"
+      className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-coral/25 bg-coral-soft px-2.5 py-1 text-xs font-semibold text-coral transition hover:border-coral hover:bg-coral hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50"
     >
       <MapPin className="h-3.5 w-3.5" aria-hidden />
       Open in Maps

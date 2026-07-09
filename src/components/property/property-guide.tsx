@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { BedDouble, MapPin, ShowerHead, Users } from "lucide-react";
+import { BedDouble, Clock3, DoorOpen, MapPin, ShowerHead, Users, Wifi } from "lucide-react";
 
 import { BrandLogo } from "@/components/brand/brand-logo";
 import { ChatWidget } from "@/components/chat/chat-widget";
@@ -38,7 +38,8 @@ export function PropertyGuide({
             className="z-0 object-cover opacity-70"
           />
         ) : null}
-        <div className="absolute inset-0 z-10 bg-gradient-to-t from-navy via-navy/78 to-navy/28" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-navy via-navy/82 to-navy/22" />
+        <div className="absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-t from-cream/95 to-transparent" />
 
         <div className="relative z-20 mx-auto flex min-h-[460px] max-w-7xl flex-col px-4 py-5 sm:min-h-[560px] sm:px-8 sm:py-7 lg:px-10">
           <header className="flex items-center">
@@ -53,6 +54,9 @@ export function PropertyGuide({
 
           <div className="flex flex-1 flex-col justify-center pb-2 pt-5 sm:pt-8">
             <div className="max-w-3xl space-y-4 sm:space-y-5">
+              <p className="inline-flex rounded-full border border-white/25 bg-white/14 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-orange backdrop-blur">
+                Guest guide · {property.code}
+              </p>
               <h1 className="text-[clamp(2.35rem,13vw,5.5rem)] font-semibold leading-[0.98] tracking-[-0.055em]">
                 {property.name}
               </h1>
@@ -87,6 +91,29 @@ export function PropertyGuide({
               <ShareGuideButton
                 propertyCode={property.code}
                 propertyName={property.name}
+              />
+            </div>
+
+            <div className="mt-5 grid max-w-4xl gap-2 rounded-card border border-white/22 bg-white/14 p-3 shadow-pop backdrop-blur-md sm:mt-7 sm:grid-cols-4 sm:p-4">
+              <QuickStep
+                icon={<Clock3 className="h-4 w-4" aria-hidden />}
+                label="Check-in"
+                value={`From ${property.rules.check_in_time}`}
+              />
+              <QuickStep
+                icon={<Wifi className="h-4 w-4" aria-hidden />}
+                label="WiFi"
+                value={property.operational.wifi_network}
+              />
+              <QuickStep
+                icon={<DoorOpen className="h-4 w-4" aria-hidden />}
+                label="Access"
+                value={property.operational.property_access_type.replaceAll("_", " ")}
+              />
+              <QuickStep
+                icon={<MapPin className="h-4 w-4" aria-hidden />}
+                label="Area"
+                value={property.address.neighborhood}
               />
             </div>
           </div>
@@ -148,6 +175,28 @@ function HeroStat({
         {label}
       </dt>
       <dd className="mt-1 text-xl font-semibold leading-none sm:text-2xl">{value}</dd>
+    </div>
+  );
+}
+
+function QuickStep({
+  icon,
+  label,
+  value,
+}: {
+  icon: ReactNode;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="rounded-panel bg-white/88 p-3 text-navy shadow-card">
+      <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-coral">
+        {icon}
+        {label}
+      </p>
+      <p className="mt-1 truncate text-sm font-semibold capitalize" title={value}>
+        {value}
+      </p>
     </div>
   );
 }
