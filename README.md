@@ -86,6 +86,18 @@ Core models:
 
 The demo data is fictional and safe for a public repository.
 
+## Security Notes
+
+This repository intentionally keeps demo guides public so recruiters can inspect the full guest flow without authentication. In a production guest-guide product, direct public property codes should not expose WiFi passwords, access codes, host phone numbers, or reservation details.
+
+Production hardening path:
+
+- Use signed, expiring guest-guide links scoped to a reservation
+- Store only hashed access tokens server-side
+- Hide or redact sensitive operational fields until a valid token/session is present
+- Add audit logging for guide access and assistant questions
+- Separate public local recommendations from private arrival and reservation data
+
 ## Local Setup
 
 Install dependencies:

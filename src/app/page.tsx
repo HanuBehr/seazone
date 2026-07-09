@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { PropertyCodeForm } from "@/components/access/property-code-form";
 import { BrandLogo } from "@/components/brand/brand-logo";
+import { DemoDisclosure } from "@/components/demo/demo-disclosure";
 import { demoProperties } from "@/lib/demo-properties";
 
 const supportImageUrl =
@@ -35,6 +36,10 @@ export default function Home() {
             <p className="mt-4 text-sm leading-6 text-muted sm:mt-5">
               Demo portfolio · PostgreSQL persistence · Streaming AI assistant
             </p>
+
+            <div className="mt-4 max-w-lg">
+              <DemoDisclosure compact />
+            </div>
           </div>
         </div>
 
