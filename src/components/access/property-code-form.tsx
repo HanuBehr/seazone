@@ -4,16 +4,7 @@ import { FormEvent, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
-const exampleCodes = [
-  "SYD001",
-  "BLI001",
-  "NYG001",
-  "MEL001",
-  "TYO001",
-  "SFO001",
-  "RIO001",
-  "LIS001",
-];
+import { demoPropertyCodes } from "@/lib/demo-properties";
 
 export function PropertyCodeForm() {
   const router = useRouter();
@@ -69,7 +60,7 @@ export function PropertyCodeForm() {
         className="app-scroll -mx-4 mt-4 flex items-center gap-2 overflow-x-auto px-4 pb-1 text-xs text-muted sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0"
       >
         <span className="shrink-0">Demo codes:</span>
-        {exampleCodes.map((code) => (
+        {demoPropertyCodes.map((code) => (
           <button
             key={code}
             type="button"

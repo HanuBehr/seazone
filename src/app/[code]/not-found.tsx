@@ -1,17 +1,7 @@
 import Link from "next/link";
 
 import { BrandLogo } from "@/components/brand/brand-logo";
-
-const exampleCodes = [
-  "SYD001",
-  "BLI001",
-  "NYG001",
-  "MEL001",
-  "TYO001",
-  "SFO001",
-  "RIO001",
-  "LIS001",
-];
+import { demoPropertyCodes } from "@/lib/demo-properties";
 
 export default function PropertyNotFound() {
   return (
@@ -39,7 +29,7 @@ export default function PropertyNotFound() {
         <div className="mt-8 border-t border-line pt-6">
           <p className="text-xs font-medium text-muted">Demo codes:</p>
           <div className="mt-3 flex flex-wrap gap-2">
-            {exampleCodes.map((code) => (
+            {demoPropertyCodes.map((code) => (
               <Link
                 key={code}
                 href={`/${code}`}
