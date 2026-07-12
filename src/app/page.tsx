@@ -13,7 +13,7 @@ import {
 import { PropertyCodeForm } from "@/components/access/property-code-form";
 import { propertyCatalog } from "@/lib/property-catalog";
 
-const previewProperties = propertyCatalog.slice(0, 4);
+const previewProperties = propertyCatalog;
 
 const guideRows = [
   { label: "Arrival", value: "Check-in from 3:00 PM", icon: Clock3 },
@@ -63,7 +63,7 @@ export default function Home() {
             AI guest guides for short-term rentals
           </p>
           <h1 className="mt-5 text-[clamp(2.55rem,5.7vw,5.35rem)] font-semibold leading-[0.92] tracking-[-0.07em] text-navy">
-            Stop answering the same guest questions
+            Give every guest a guide that answers for you
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
             Hosthing creates a shareable guide for each property with check-in

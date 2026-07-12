@@ -6,7 +6,9 @@ Hosthing is a rental guest experience app for short-term rental hosts who are ti
 
 ## Live App
 
-Production is deployed on Vercel.
+Production: https://hosthing.vercel.app
+
+Repository: https://github.com/HanuBehr/hosthing
 
 Sample property codes:
 
@@ -157,7 +159,6 @@ npm run build
 
 ## Next Improvements
 
-- Replace the temporary product name once final branding is selected
 - Add authenticated owner/admin workflows for managing properties and reservations
 - Add tokenized guest access links so private arrival details are not public by code alone
 - Add integration tests for chat API fallback behavior
