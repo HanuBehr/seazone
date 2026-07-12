@@ -46,12 +46,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-6 columns-1 gap-4 space-y-4 sm:mt-8 sm:columns-2 lg:columns-4">
+        <div className="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2 lg:grid-cols-4">
           {propertyCatalog.map((property, index) => (
             <Link
               key={property.code}
               href={`/${property.code}`}
-              className={`group relative mb-4 block break-inside-avoid overflow-hidden rounded-[1.6rem] border border-line bg-navy shadow-card transition hover:-translate-y-1 hover:border-coral/60 hover:shadow-raised focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50 focus-visible:ring-offset-2 ${index === 0 ? "min-h-[34rem]" : "min-h-[21rem]"}`}
+              className={`group relative overflow-hidden rounded-[1.6rem] border border-line bg-navy shadow-card transition hover:-translate-y-1 hover:border-coral/60 hover:shadow-raised focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50 focus-visible:ring-offset-2 ${index === 0 ? "min-h-[18rem] sm:col-span-2 lg:col-span-2" : "min-h-[21rem]"}`}
             >
                 <Image
                   src={property.images[0]}
@@ -68,7 +68,7 @@ export default function Home() {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sun">
                   {property.market}
                 </p>
-                <h3 className={`${index === 0 ? "text-3xl" : "text-lg"} mt-2 font-semibold leading-none tracking-[-0.04em]`}>
+                <h3 className={`${index === 0 ? "max-w-md text-3xl" : "text-lg"} mt-2 font-semibold leading-none tracking-[-0.04em]`}>
                   {property.name}
                 </h3>
                 <p className="mt-2 text-sm leading-5 text-white/78">
