@@ -69,7 +69,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="mt-6 grid auto-rows-[18rem] gap-4 sm:mt-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid auto-rows-[22rem] gap-4 sm:mt-8 sm:grid-cols-2 lg:grid-cols-4">
           {previewProperties.map((property, index) => (
             <GuideCard
               key={property.code}
@@ -160,8 +160,8 @@ function getMosaicClass(index: number) {
     "lg:col-span-2",
     "",
     "",
-    "sm:col-span-2 lg:col-span-1",
-    "sm:col-span-2 lg:col-span-1",
+    "",
+    "",
   ];
 
   return classes[index] ?? "";
@@ -190,8 +190,8 @@ function GuideCard({
           className="object-cover transition duration-500 group-hover:scale-105"
         />
       </div>
-      <div className="self-end border-t border-line bg-surface/96 p-4 text-navy">
-        <h3 className={`${featured ? "text-2xl" : "text-lg"} font-semibold leading-[1.05] tracking-[-0.04em]`}>
+      <div className="border-t border-line bg-surface/96 p-4 text-navy">
+        <h3 className={`${featured ? "text-2xl" : "text-[1.05rem]"} font-semibold leading-[1.08] tracking-[-0.04em]`}>
           {property.name}
         </h3>
         <p className="mt-3 flex items-center gap-1.5 text-sm leading-5 text-muted">
