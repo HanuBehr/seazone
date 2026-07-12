@@ -104,7 +104,7 @@ function ArrivalSupportVisual() {
       aria-label="Guest support overview"
       className="flex justify-center lg:justify-end"
     >
-      <div className="relative h-[280px] w-full max-w-lg overflow-hidden rounded-[2rem] border border-line bg-surface shadow-raised sm:h-[420px] lg:h-[560px] lg:max-w-none">
+      <div className="relative h-[280px] w-full max-w-lg overflow-hidden rounded-[2rem] border border-line bg-surface shadow-raised sm:h-[380px] lg:h-[460px] lg:max-w-none">
         <Image
           src={supportImageUrl}
           alt="Modern short-term rental living room"
@@ -113,28 +113,36 @@ function ArrivalSupportVisual() {
           sizes="(max-width: 1024px) 100vw, 400px"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-900/72 via-navy-900/8 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-900/76 via-navy-900/6 to-transparent" />
         <div className="absolute left-4 top-4 h-20 w-20 rounded-full border border-white/25 bg-white/10 backdrop-blur" />
 
-        <div className="absolute inset-x-4 bottom-4 rounded-card border border-white/45 bg-surface/88 p-4 text-navy shadow-raised backdrop-blur-md sm:inset-x-5 sm:bottom-5 sm:p-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange">
-            Guest guide
-          </p>
-          <p className="mt-2 text-lg font-semibold tracking-[-0.035em]">
-            Access, reservation details, and stay support in one place.
-          </p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {["Access", "Booking", "Local tips"].map((label) => (
-              <span
-                key={label}
-                className="rounded-full border border-line bg-fog px-3 py-1 text-xs font-semibold text-navy"
-              >
-                {label}
-              </span>
-            ))}
-          </div>
+        <div className="absolute left-4 bottom-4 grid gap-2 sm:left-5 sm:bottom-5">
+          <HeroNote label="Access" value="Codes, WiFi, parking" />
+          <HeroNote label="Booking" value="Dates, fees, guests" />
+        </div>
+        <div className="absolute right-4 bottom-4 sm:right-5 sm:bottom-5">
+          <HeroNote label="Local" value="Food, maps, essentials" align="right" />
         </div>
       </div>
     </aside>
+  );
+}
+
+function HeroNote({
+  label,
+  value,
+  align = "left",
+}: {
+  label: string;
+  value: string;
+  align?: "left" | "right";
+}) {
+  return (
+    <div className={`rounded-full border border-white/35 bg-surface/88 px-3 py-2 text-navy shadow-card backdrop-blur-md ${align === "right" ? "text-right" : ""}`}>
+      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-orange">
+        {label}
+      </p>
+      <p className="mt-0.5 text-xs font-semibold">{value}</p>
+    </div>
   );
 }
