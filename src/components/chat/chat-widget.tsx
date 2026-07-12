@@ -137,7 +137,7 @@ export function ChatWidget({
               <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-orange">
                 <Image
                   src="/assistant-avatar.svg"
-                  alt="Hostwise stay support"
+                  alt="Hosthing stay support"
                   fill
                   sizes="40px"
                   className="object-cover"

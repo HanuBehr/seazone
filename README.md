@@ -1,8 +1,8 @@
-# Hostwise
+# Hosthing
 
 Guest guides for short-term rental operators.
 
-Hostwise is a rental guest experience app inspired by the operational problems behind Airbnb-style hospitality: guests need arrival instructions, property rules, reservation details, and local recommendations in one reliable place. Each property has its own guide, persisted generated local content, and a streaming guest support chat that answers from the current property and reservation context.
+Hosthing is a rental guest experience app for short-term rental hosts who are tired of repeating check-in instructions, house rules, WiFi details, and local recommendations. Each property has its own guest guide, persisted local content, booking context, and a streaming support chat that answers from the current property and reservation data.
 
 ## Live App
 
@@ -112,7 +112,7 @@ npm install
 Create `.env` from `.env.example`:
 
 ```bash
-DATABASE_URL="postgresql://user:password@localhost:5432/hostwise"
+DATABASE_URL="postgresql://user:password@localhost:5432/hosthing"
 OPENAI_API_KEY=""
 ```
 

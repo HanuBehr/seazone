@@ -13,9 +13,9 @@ import {
 import { propertyCatalog, reservationCatalog } from "@/lib/property-catalog";
 
 export const metadata: Metadata = {
-  title: "Operator Dashboard | Hostwise",
+  title: "Host Dashboard | Hosthing",
   description:
-    "Read-only operations dashboard for the Hostwise property guide system.",
+    "Read-only operations dashboard for the Hosthing property guide system.",
 };
 
 const marketCount = new Set(propertyCatalog.map((property) => property.market)).size;

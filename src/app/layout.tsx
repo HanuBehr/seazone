@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hostwise | Guest Guides",
+  title: "Hosthing | AI Guest Guides for Short-Term Rentals",
   description:
-    "Guest guides with arrival details, reservation context, local recommendations, and stay support.",
+    "Create property-specific guest guides with check-in instructions, WiFi, house rules, local recommendations, booking details, and automated guest support.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!property) {
     return {
-      title: "Guide not found | Hostwise",
+      title: "Guide not found | Hosthing",
     };
   }
 

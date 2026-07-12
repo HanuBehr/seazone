@@ -32,10 +32,10 @@ export function PropertyCodeForm() {
     >
       <div>
         <label htmlFor="property-code" className="text-sm font-semibold text-navy">
-          Property code
+          Have a property code?
         </label>
         <p className="mt-1 text-sm leading-5 text-muted">
-          Use the code from your reservation, or choose a guide below.
+          Guests can open the exact guide from their reservation.
         </p>
       </div>
 
