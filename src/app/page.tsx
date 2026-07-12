@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BedDouble, MapPin, ShieldCheck, Users } from "lucide-react";
+import { BedDouble, Compass, DoorOpen, KeyRound, MapPin, Users } from "lucide-react";
 
 import { PropertyCodeForm } from "@/components/access/property-code-form";
 import { BrandLogo } from "@/components/brand/brand-logo";
@@ -12,7 +12,7 @@ const supportImageUrl =
 export default function Home() {
   return (
     <main className="app-shell min-h-screen px-4 py-5 sm:px-8 sm:py-8 lg:px-10">
-      <section className="mx-auto grid min-h-[calc(100dvh-2.5rem)] max-w-[1180px] items-center gap-8 lg:grid-cols-[minmax(0,1fr)_460px] lg:gap-16">
+      <section className="mx-auto grid min-h-[calc(100dvh-2.5rem)] max-w-[1220px] items-center gap-10 lg:grid-cols-[minmax(0,1fr)_500px] lg:gap-16">
         <div className="max-w-2xl">
           <BrandLogo />
 
@@ -29,24 +29,36 @@ export default function Home() {
               need it.
             </p>
 
-            <div className="app-surface mt-7 max-w-xl rounded-card border border-line p-4 shadow-raised sm:mt-9 sm:p-6">
-              <PropertyCodeForm />
+            <div className="atlas-paper app-surface mt-7 max-w-xl rounded-[2rem] border border-line p-4 shadow-raised sm:mt-9 sm:p-6">
+              <div className="relative z-10">
+                <div className="mb-4 flex items-center justify-between gap-3 border-b border-line pb-3">
+                  <span className="text-xs font-semibold uppercase tracking-[0.24em] text-orange">
+                    Arrival pass
+                  </span>
+                  <span className="atlas-stamp rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy">
+                    Guest ready
+                  </span>
+                </div>
+                <PropertyCodeForm />
+              </div>
             </div>
 
-            <div className="mt-5 grid max-w-xl gap-2 text-sm text-muted sm:grid-cols-3">
-              {heroSignals.map((signal) => {
-                const Icon = signal.icon;
-                return (
-                  <div
-                    key={signal.label}
-                    className="rounded-panel border border-line bg-surface/55 px-3 py-3 shadow-card backdrop-blur"
-                  >
-                    <Icon className="mb-2 h-4 w-4 text-coral" aria-hidden />
-                    <p className="font-semibold text-navy">{signal.label}</p>
-                    <p className="mt-0.5 leading-5">{signal.text}</p>
-                  </div>
-                );
-              })}
+            <div className="mt-6 max-w-2xl overflow-hidden rounded-[1.6rem] border border-line bg-surface/55 shadow-card backdrop-blur">
+              <div className="grid sm:grid-cols-4">
+                {journeySteps.map((signal) => {
+                  const Icon = signal.icon;
+                  return (
+                    <div
+                      key={signal.label}
+                      className="border-b border-line px-4 py-3 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
+                    >
+                      <Icon className="mb-3 h-4 w-4 text-coral" aria-hidden />
+                      <p className="text-sm font-semibold text-navy">{signal.label}</p>
+                      <p className="mt-1 text-sm leading-5 text-muted">{signal.text}</p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
             <div className="mt-5 flex flex-wrap gap-3">
@@ -79,51 +91,46 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2 lg:grid-cols-4">
-          {propertyCatalog.map((property) => (
+        <div className="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[18rem]">
+          {propertyCatalog.map((property, index) => (
             <Link
               key={property.code}
               href={`/${property.code}`}
-              className="group overflow-hidden rounded-card border border-line bg-surface/86 shadow-card transition hover:-translate-y-1 hover:border-coral/60 hover:shadow-raised focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50 focus-visible:ring-offset-2"
+              className={`group relative min-h-[21rem] overflow-hidden rounded-[1.6rem] border border-line bg-navy shadow-card transition hover:-translate-y-1 hover:border-coral/60 hover:shadow-raised focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50 focus-visible:ring-offset-2 ${index === 0 ? "lg:col-span-2 lg:row-span-2" : ""}`}
             >
-              <div className="relative h-48 overflow-hidden bg-mist">
                 <Image
                   src={property.images[0]}
                   alt={property.name}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transition duration-500 group-hover:scale-105"
+                  sizes={index === 0 ? "(max-width: 1024px) 100vw, 50vw" : "(max-width: 1024px) 50vw, 25vw"}
+                  className="object-cover opacity-88 transition duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent" />
-                <div className="absolute left-3 top-3 rounded-full bg-surface/90 px-3 py-1 text-xs font-semibold text-navy backdrop-blur">
-                  {property.code}
-                </div>
-                <div className="absolute bottom-3 left-3 rounded-full bg-navy/82 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
-                  {property.address.neighborhood}
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/92 via-navy/18 to-transparent" />
+              <div className="absolute left-4 top-4 rounded-full bg-surface/90 px-3 py-1 text-xs font-semibold text-navy backdrop-blur">
+                {property.code}
               </div>
-              <div className="p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-orange">
+              <div className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sun">
                   {property.market}
                 </p>
-                <h3 className="mt-2 text-base font-semibold leading-5 tracking-[-0.02em] text-navy">
+                <h3 className={`${index === 0 ? "text-3xl" : "text-lg"} mt-2 font-semibold leading-none tracking-[-0.04em]`}>
                   {property.name}
                 </h3>
-                <p className="mt-2 text-sm leading-5 text-muted">
+                <p className="mt-2 text-sm leading-5 text-white/78">
                   {property.address.neighborhood}, {property.address.city}
                 </p>
                 <div className="mt-3 flex flex-wrap gap-1.5 text-xs font-semibold">
-                  <span className="inline-flex items-center gap-1 rounded-full bg-coral-soft px-2.5 py-1 text-coral">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-white/16 px-2.5 py-1 text-white backdrop-blur">
                     <Users className="h-3.5 w-3.5" aria-hidden />
                     {property.guestCapacity} guests
                   </span>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-fog px-2.5 py-1 text-navy">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-white/16 px-2.5 py-1 text-white backdrop-blur">
                     <BedDouble className="h-3.5 w-3.5" aria-hidden />
                     {property.bedroomQuantity} bed
                     {property.bedroomQuantity > 1 ? "s" : ""}
                   </span>
                 </div>
-                <p className="mt-3 text-xs font-semibold text-navy">
+                <p className="mt-3 text-xs font-semibold text-white/82">
                   {property.typeLabel} · Self check-in
                 </p>
               </div>
@@ -133,8 +140,9 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-[1180px] pb-12 sm:pb-16">
-        <div className="rounded-card border border-navy/10 bg-navy p-5 text-white shadow-raised sm:p-7 lg:p-8">
-          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div className="atlas-paper rounded-[2rem] border border-navy/10 bg-navy p-5 text-white shadow-raised sm:p-7 lg:p-8">
+          <div className="relative z-10">
+            <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange-soft">
                 Host and guest workflow
@@ -161,6 +169,7 @@ export default function Home() {
                   </p>
                 </div>
               ))}
+            </div>
             </div>
           </div>
         </div>
@@ -192,20 +201,25 @@ const guideHighlights = [
   },
 ] as const;
 
-const heroSignals = [
+const journeySteps = [
   {
-    label: "Access first",
-    text: "WiFi, lock code, parking, and timing are easy to find.",
-    icon: ShieldCheck,
+    label: "Arrive",
+    text: "Open the stay pass before the trip.",
+    icon: Compass,
   },
   {
-    label: "Stay context",
-    text: "Booking details travel with the property guide.",
-    icon: Users,
+    label: "Unlock",
+    text: "Find access and WiFi without digging.",
+    icon: KeyRound,
   },
   {
-    label: "Local map",
-    text: "Nearby food, essentials, and attractions are one tap away.",
+    label: "Settle",
+    text: "Confirm rules, host, dates, and fees.",
+    icon: DoorOpen,
+  },
+  {
+    label: "Explore",
+    text: "Use local picks with map actions.",
     icon: MapPin,
   },
 ] as const;

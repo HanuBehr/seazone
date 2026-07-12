@@ -2,50 +2,54 @@
 
 /* ------------------------------------------------------------------ *
  * Hostwise design tokens.
- * Bright boutique travel palette: limestone, paper, mineral greens,
- * weathered bronze, and deep ink. The UI should feel edited, not loud.
+ * Arrival atlas identity: warm field-guide paper, palm ink, pool blue,
+ * terracotta, and sun-washed accents. Designed to feel useful and memorable.
  * ------------------------------------------------------------------ */
 @theme {
   /* Core neutrals */
-  --color-navy: #1f2f2d;
-  --color-navy-700: #344943;
-  --color-navy-900: #121c1a;
-  --color-ink: #17211f;
-  --color-muted: #6f7b72;
+  --color-navy: #143b35;
+  --color-navy-700: #1d574d;
+  --color-navy-900: #081f1d;
+  --color-ink: #102522;
+  --color-muted: #69786f;
 
   /* Editorial surfaces */
-  --color-cream: #f5f0e6;
-  --color-sand: #e8decc;
-  --color-surface: #fffdf8;
-  --color-mist: #dfe6df;
-  --color-fog: #edf1ea;
-  --color-limestone: #d8cfbd;
+  --color-cream: #fff4dc;
+  --color-sand: #efd9b6;
+  --color-surface: #fffaf0;
+  --color-mist: #d8eee9;
+  --color-fog: #eff8ef;
+  --color-limestone: #e4cda7;
 
   /* Accents */
-  --color-coral: #2f6f62;
-  --color-coral-600: #23574d;
-  --color-coral-soft: #e3eee8;
-  --color-orange: #9a6b42;
-  --color-orange-600: #7a5230;
-  --color-orange-soft: #efe3d4;
-  --color-clay: #b56f53;
-  --color-clay-soft: #f0ded6;
+  --color-coral: #138a7a;
+  --color-coral-600: #0c685d;
+  --color-coral-soft: #d8f3ec;
+  --color-orange: #c56f38;
+  --color-orange-600: #9c4f28;
+  --color-orange-soft: #ffe4c8;
+  --color-clay: #c74463;
+  --color-clay-soft: #ffe1e7;
+  --color-pool: #1f9fc5;
+  --color-pool-soft: #d9f3fb;
+  --color-sun: #ffd56a;
+  --color-sun-soft: #fff4bf;
 
   /* Lines + semantic */
-  --color-line: #ded5c6;
-  --color-line-cool: #cad6cf;
-  --color-positive: #487b58;
-  --color-positive-soft: #e5eee4;
+  --color-line: #e0bd8d;
+  --color-line-cool: #a9d7cf;
+  --color-positive: #14785b;
+  --color-positive-soft: #dff4e6;
 
   /* Radius scale — brand-specific names to avoid clobbering rounded-md/lg */
-  --radius-card: 1.55rem;
-  --radius-panel: 1.05rem;
+  --radius-card: 1.75rem;
+  --radius-panel: 1.15rem;
   --radius-field: 0.72rem;
 
   /* Shadow scale */
-  --shadow-card: 0 1px 0 rgba(23, 33, 31, 0.04), 0 18px 42px rgba(44, 49, 40, 0.08);
-  --shadow-raised: 0 2px 0 rgba(23, 33, 31, 0.05), 0 28px 70px rgba(44, 49, 40, 0.14);
-  --shadow-pop: 0 18px 60px rgba(18, 28, 26, 0.24);
+  --shadow-card: 0 1px 0 rgba(16, 37, 34, 0.05), 0 18px 42px rgba(113, 80, 39, 0.12);
+  --shadow-raised: 0 2px 0 rgba(16, 37, 34, 0.05), 0 30px 80px rgba(96, 62, 22, 0.18);
+  --shadow-pop: 0 18px 60px rgba(8, 31, 29, 0.28);
 }
 
 @theme inline {
@@ -65,7 +69,7 @@ body {
 }
 
 ::selection {
-  background: rgba(47, 111, 98, 0.22);
+  background: rgba(255, 213, 106, 0.5);
   color: var(--color-navy-900);
 }
 
@@ -79,15 +83,44 @@ textarea {
 /* Editorial page wash used across the product. */
 .app-shell {
   background:
-    radial-gradient(circle at 12% 8%, rgba(47, 111, 98, 0.11), transparent 26rem),
-    radial-gradient(circle at 88% 4%, rgba(154, 107, 66, 0.13), transparent 24rem),
-    radial-gradient(circle at 60% 100%, rgba(223, 230, 223, 0.8), transparent 28rem),
-    linear-gradient(145deg, var(--color-surface) 0%, var(--color-cream) 46%, var(--color-sand) 100%);
+    linear-gradient(90deg, rgba(20, 59, 53, 0.045) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(20, 59, 53, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 10% 8%, rgba(255, 213, 106, 0.55), transparent 24rem),
+    radial-gradient(circle at 86% 12%, rgba(31, 159, 197, 0.18), transparent 25rem),
+    radial-gradient(circle at 55% 98%, rgba(199, 68, 99, 0.14), transparent 24rem),
+    linear-gradient(145deg, var(--color-surface) 0%, var(--color-cream) 48%, #f7dfad 100%);
+  background-size: 44px 44px, 44px 44px, auto, auto, auto, auto;
 }
 
 .app-surface {
-  background: rgba(255, 253, 248, 0.82);
+  background: rgba(255, 250, 240, 0.86);
   backdrop-filter: blur(18px);
+}
+
+.atlas-paper {
+  position: relative;
+  overflow: hidden;
+}
+
+.atlas-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.35), transparent 42%),
+    radial-gradient(circle at 18% 12%, rgba(255, 213, 106, 0.2), transparent 16rem),
+    radial-gradient(circle at 85% 80%, rgba(19, 138, 122, 0.12), transparent 18rem);
+}
+
+.atlas-stamp {
+  border: 1px dashed rgba(20, 59, 53, 0.42);
+  box-shadow: inset 0 0 0 1px rgba(255, 250, 240, 0.65);
+}
+
+.atlas-rule {
+  background-image: linear-gradient(90deg, rgba(20, 59, 53, 0.24) 1px, transparent 1px);
+  background-size: 12px 1px;
 }
 
 .app-card-shadow {

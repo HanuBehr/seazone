@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Car, Clock3, DoorOpen, KeyRound, LogOut, Wifi } from "lucide-react";
+import { Car, Clock3, DoorOpen, LogOut, Wifi } from "lucide-react";
 
 import { CopyButton } from "@/components/property/copy-field";
 import { formatAccessType, formatHour } from "@/lib/format";
@@ -30,84 +30,65 @@ export function ArrivalEssentials({ property }: { property: Property }) {
         </p>
       </div>
 
-      <div className="mt-5 grid gap-2.5 sm:mt-6 sm:gap-3 sm:grid-cols-2">
-        <Tile
-          icon={<Clock3 className="h-5 w-5" />}
-          label="Check-in"
-          value={`From ${formatHour(rules.check_in_time)}`}
-        />
-        <Tile
-          icon={<LogOut className="h-5 w-5" />}
-          label="Check-out"
-          value={`Until ${formatHour(rules.check_out_time)}`}
-        />
-
-        <Tile icon={<Wifi className="h-5 w-5" />} label="WiFi">
-          <div className="mt-3 rounded-field border border-line bg-fog/80 p-3">
-            <p className="text-xs font-medium text-muted">Network</p>
-            <p className="mt-1 truncate font-semibold text-navy" title={operational.wifi_network}>
-              {operational.wifi_network}
+      <div className="atlas-paper mt-5 overflow-hidden rounded-[2rem] border border-line bg-surface/90 shadow-raised sm:mt-6">
+        <div className="relative z-10 grid lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="bg-navy p-5 text-white sm:p-6">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-sun">
+              <DoorOpen className="h-4 w-4" aria-hidden />
+              Unlock first
             </p>
-          </div>
-          <div className="mt-2 flex items-center justify-between gap-3 rounded-field border border-line bg-surface/95 px-3 py-2">
-            <div className="min-w-0">
-              <p className="text-xs font-medium text-muted">Password</p>
-              <p className="mt-0.5 truncate font-semibold text-navy" title={operational.wifi_password}>
-                {operational.wifi_password}
-              </p>
-            </div>
-            <CopyButton
-              value={operational.wifi_password}
-              label="Copy WiFi password"
-            />
-          </div>
-        </Tile>
-
-        <Tile icon={<Car className="h-5 w-5" />} label="Parking">
-          <p className="mt-2 font-semibold text-navy">{parkingValue}</p>
-          {operational.parking_spot_instructions ? (
-            <p className="mt-2 break-words text-sm leading-6 text-muted">
-              {operational.parking_spot_instructions}
+            <p className="mt-4 text-3xl font-semibold tracking-[-0.055em] sm:text-4xl">
+              {formatAccessType(operational.property_access_type)}
             </p>
-          ) : null}
-        </Tile>
-      </div>
-
-      <div className="mt-3 rounded-card border border-coral/20 bg-surface/92 p-3 shadow-card sm:p-5">
-        <div className="flex items-start gap-3">
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-field bg-coral text-white shadow-card">
-            <DoorOpen className="h-5 w-5" aria-hidden />
-          </span>
-          <div className="min-w-0 space-y-2">
-            <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-              <p className="text-xs font-medium text-muted">Property access</p>
-              <p className="font-semibold text-navy">
-                {formatAccessType(operational.property_access_type)}
-              </p>
-            </div>
-            <p className="break-words text-sm leading-6 text-muted">
+            <p className="mt-4 max-w-xl text-sm leading-6 text-white/76">
               {operational.property_access_instructions}
             </p>
+
             {operational.property_password ? (
-              <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-field border border-line bg-fog/85 px-3 py-2">
-                <KeyRound className="h-4 w-4 shrink-0 text-coral" aria-hidden />
-                <span className="min-w-0">
-                  <span className="block text-xs font-medium text-muted">Access code</span>
-                  <span
-                    className="block truncate font-semibold text-navy"
-                    title={operational.property_password}
-                  >
+              <div className="mt-5 flex items-center justify-between gap-4 rounded-[1.25rem] border border-white/18 bg-white/12 p-4 backdrop-blur">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sun">
+                    Access code
+                  </p>
+                  <p className="mt-1 text-3xl font-semibold tracking-[-0.04em]">
                     {operational.property_password}
-                  </span>
-                </span>
-                <span className="shrink-0">
-                  <CopyButton
-                    value={operational.property_password}
-                    label="Copy access code"
-                  />
-                </span>
+                  </p>
+                </div>
+                <CopyButton
+                  value={operational.property_password}
+                  label="Copy access code"
+                />
               </div>
             ) : null}
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-1">
+            <InfoSlice
+              icon={<Clock3 className="h-5 w-5" aria-hidden />}
+              label="Check-in"
+              value={`From ${formatHour(rules.check_in_time)}`}
+              detail={`Check-out until ${formatHour(rules.check_out_time)}`}
+            />
+            <InfoSlice
+              icon={<Wifi className="h-5 w-5" aria-hidden />}
+              label="WiFi"
+              value={operational.wifi_network}
+              detail={operational.wifi_password}
+              copyValue={operational.wifi_password}
+              copyLabel="Copy WiFi password"
+            />
+            <InfoSlice
+              icon={<Car className="h-5 w-5" aria-hidden />}
+              label="Parking"
+              value={parkingValue}
+              detail={operational.parking_spot_instructions ?? "Ask the host before arrival."}
+            />
+            <InfoSlice
+              icon={<LogOut className="h-5 w-5" aria-hidden />}
+              label="Departure"
+              value={`Until ${formatHour(rules.check_out_time)}`}
+              detail="Leave keys and access devices as instructed by the host."
+            />
           </div>
         </div>
       </div>
@@ -115,29 +96,34 @@ export function ArrivalEssentials({ property }: { property: Property }) {
   );
 }
 
-function Tile({
+function InfoSlice({
   icon,
   label,
   value,
-  children,
+  detail,
+  copyValue,
+  copyLabel,
 }: {
   icon: ReactNode;
   label: string;
-  value?: string;
-  children?: ReactNode;
+  value: string;
+  detail: string;
+  copyValue?: string;
+  copyLabel?: string;
 }) {
   return (
-    <div className="rounded-panel border border-line bg-surface/86 p-3 shadow-card sm:p-4">
-      <p className="flex items-center gap-2 text-xs font-medium text-muted">
-        <span className="grid h-8 w-8 shrink-0 place-items-center rounded-field bg-coral-soft text-coral">
-          {icon}
-        </span>
+    <div className="border-b border-line p-4 last:border-b-0 sm:p-5 sm:[&:nth-child(odd)]:border-r lg:[&:nth-child(odd)]:border-r-0">
+      <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-coral">
+        {icon}
         {label}
       </p>
-      {value ? (
-        <p className="mt-2 break-words font-semibold text-navy">{value}</p>
-      ) : null}
-      {children}
+      <div className="mt-3 flex items-center justify-between gap-3">
+        <p className="min-w-0 truncate text-xl font-semibold tracking-[-0.035em] text-navy" title={value}>
+          {value}
+        </p>
+        {copyValue && copyLabel ? <CopyButton value={copyValue} label={copyLabel} /> : null}
+      </div>
+      <p className="mt-2 text-sm leading-6 text-muted">{detail}</p>
     </div>
   );
 }
