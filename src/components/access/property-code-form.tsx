@@ -30,9 +30,14 @@ export function PropertyCodeForm() {
       aria-busy={isPending}
       className="rounded-[1.25rem] border border-line bg-surface/90 p-3 shadow-card"
     >
-      <label htmlFor="property-code" className="text-sm font-semibold text-navy">
-        Find your guide
-      </label>
+      <div>
+        <label htmlFor="property-code" className="text-sm font-semibold text-navy">
+          Property code
+        </label>
+        <p className="mt-1 text-sm leading-5 text-muted">
+          Use the code from your reservation, or choose a guide below.
+        </p>
+      </div>
 
       <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-stretch">
         <input
