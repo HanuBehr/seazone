@@ -13,18 +13,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hosthing.vercel.app"),
+  metadataBase: new URL("https://seazone.vercel.app"),
   title: "Hosthing | AI Guest Guides for Short-Term Rentals",
   description:
     "Create property-specific guest guides with check-in instructions, WiFi, house rules, local recommendations, booking details, and automated guest support.",
   alternates: {
-    canonical: "https://hosthing.vercel.app",
+    canonical: "https://seazone.vercel.app",
   },
   openGraph: {
     title: "Hosthing | AI Guest Guides for Short-Term Rentals",
     description:
       "Create property-specific guest guides with check-in instructions, WiFi, house rules, local recommendations, booking details, and automated guest support.",
-    url: "https://hosthing.vercel.app",
+    url: "https://seazone.vercel.app",
     siteName: "Hosthing",
     type: "website",
   },
