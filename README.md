@@ -1,8 +1,20 @@
 # Hosthing
 
-Guest guides for short-term rental operators.
+AI guest guides for short-term rental hosts and guests.
 
-Hosthing is a rental guest experience app for short-term rental hosts who are tired of repeating check-in instructions, house rules, WiFi details, and local recommendations. Each property has its own guest guide, persisted local content, booking context, and a streaming support chat that answers from the current property and reservation data.
+Hosthing helps hosts stop repeating check-in instructions, house rules, WiFi details, and local recommendations by giving every property a shareable guest guide with AI-powered stay support.
+
+[![CI](https://github.com/HanuBehr/hosthing/actions/workflows/ci.yml/badge.svg)](https://github.com/HanuBehr/hosthing/actions/workflows/ci.yml)
+
+![Hosthing host dashboard](docs/hosthing-overview.svg)
+
+[Live demo](https://hosthing.vercel.app) · [Repository](https://github.com/HanuBehr/hosthing)
+
+## Technical Highlights
+
+- **Property-scoped guest guides:** dynamic `/[code]` routes load property, reservation, arrival, rules, and local-guide context server-side.
+- **AI support with safety boundaries:** chat responses are constrained to known property, reservation, and local-guide data instead of inventing private details.
+- **Resilient data layer:** Prisma/PostgreSQL-backed guide content uses catalog fallbacks so the product remains usable when generated content or database data is unavailable.
 
 ## Live App
 
@@ -102,6 +114,8 @@ Production hardening path:
 - Hide or redact sensitive operational fields until a valid token/session is present
 - Add audit logging for guide access and assistant questions
 - Separate public local recommendations from private arrival and reservation data
+- Add token and cost limits for AI responses
+- Add chat-route integration tests for fallback and refusal behavior
 
 ## Local Setup
 
@@ -157,9 +171,12 @@ npm run test
 npm run build
 ```
 
-## Next Improvements
+## Production Hardening Roadmap
 
 - Add authenticated owner/admin workflows for managing properties and reservations
-- Add tokenized guest access links so private arrival details are not public by code alone
-- Add integration tests for chat API fallback behavior
+- Add signed guest links scoped to reservation windows
+- Add audit logging for guide access and assistant questions
+- Add chat-route integration tests for fallback and refusal behavior
+- Add token and cost limits for AI responses
+- Strengthen sensitive-data boundaries for WiFi, access codes, and reservation details
 - Add map previews and richer local-guide cards
