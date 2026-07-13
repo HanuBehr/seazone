@@ -175,12 +175,18 @@ export default function OperatorDashboardPage() {
             </div>
           </div>
 
-          <aside>
-            <section>
-              <h2 className="text-xl font-semibold tracking-[-0.035em] text-navy">
+          <aside className="lg:border-l lg:border-line lg:pl-8">
+            <section className="lg:sticky lg:top-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-coral">
+                Market coverage
+              </p>
+              <h2 className="mt-2 text-xl font-semibold tracking-[-0.035em] text-navy">
                 Markets
               </h2>
-              <ul className="mt-4 border-y border-line">
+              <p className="mt-2 text-sm leading-6 text-muted">
+                {propertyCatalog.length} properties across {marketCount} active markets.
+              </p>
+              <ul className="mt-5 border-y border-line">
                 {topMarkets.map((market) => (
                   <li key={market.market} className="flex items-center justify-between gap-3 border-b border-line py-3 last:border-b-0">
                     <div>
