@@ -6,7 +6,7 @@ Hosthing helps hosts stop repeating check-in instructions, house rules, WiFi det
 
 [![CI](https://github.com/HanuBehr/hosthing/actions/workflows/ci.yml/badge.svg)](https://github.com/HanuBehr/hosthing/actions/workflows/ci.yml)
 
-![Hosthing host dashboard](docs/hosthing-overview.svg)
+![Hosthing host dashboard](public/HOSTHING.png)
 
 [Live demo](https://hosthing.vercel.app) · [Repository](https://github.com/HanuBehr/hosthing)
 
