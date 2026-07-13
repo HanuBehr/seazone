@@ -5,6 +5,7 @@ import {
   ArrowLeft,
   Building2,
   CalendarCheck,
+  CheckCircle2,
   MapPin,
   ParkingCircle,
   Users,
@@ -72,44 +73,39 @@ export default function OperatorDashboardPage() {
   return (
     <main className="app-shell min-h-screen px-4 py-6 sm:px-8 sm:py-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
-        <header className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+        <header className="flex flex-col gap-5 border-b border-line pb-7 sm:flex-row sm:items-start sm:justify-between sm:pb-9">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange">
-              Operator view
-            </p>
-            <h1 className="mt-3 max-w-3xl text-[clamp(2.1rem,5vw,4.6rem)] font-semibold leading-[0.98] tracking-[-0.055em] text-navy">
-              Property operations for guest guides
+            <h1 className="max-w-3xl text-[clamp(2.4rem,5vw,4.8rem)] font-semibold leading-[0.94] tracking-[-0.065em] text-navy">
+              Host dashboard
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-7 text-muted sm:text-lg">
-              Track which stays are ready for guests, where operational details
-              live, and which markets need host attention before arrival.
+              Monitor guide readiness, booking coverage, and operational details
+              across every property.
             </p>
           </div>
 
           <Link
             href="/"
-            className="inline-flex w-fit items-center gap-2 rounded-full border border-line bg-surface/80 px-4 py-2.5 text-sm font-semibold text-navy shadow-card transition hover:-translate-y-0.5 hover:border-coral hover:bg-coral-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50"
+            className="inline-flex w-fit items-center gap-2 rounded-full px-1 py-2 text-sm font-semibold text-navy transition hover:text-coral focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/50"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden />
-            Guest launcher
+            Back to guest view
           </Link>
         </header>
 
-        <section className="mt-7 grid gap-3 sm:mt-9 sm:grid-cols-2 lg:grid-cols-4">
+        <section className="grid border-b border-line py-6 sm:grid-cols-2 lg:grid-cols-4">
           {operationsStats.map((stat) => {
             const Icon = stat.icon;
             return (
               <div
                 key={stat.label}
-                className="rounded-card border border-line bg-surface/86 p-4 shadow-card sm:p-5"
+                className="border-b border-line py-4 last:border-b-0 sm:border-r sm:px-5 sm:last:border-r-0 sm:[&:nth-child(2)]:border-r-0 lg:border-b-0 lg:[&:nth-child(2)]:border-r lg:first:pl-0"
               >
-                <span className="grid h-10 w-10 place-items-center rounded-field bg-coral-soft text-coral">
-                  <Icon className="h-5 w-5" aria-hidden />
-                </span>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+                <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+                  <Icon className="h-4 w-4 text-coral" aria-hidden />
                   {stat.label}
                 </p>
-                <p className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-navy">
+                <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-navy">
                   {stat.value}
                 </p>
                 <p className="mt-1 text-sm leading-5 text-muted">{stat.detail}</p>
@@ -118,29 +114,25 @@ export default function OperatorDashboardPage() {
           })}
         </section>
 
-        <section className="mt-5 grid gap-5 lg:grid-cols-[1.3fr_0.7fr]">
-          <div className="rounded-card border border-line bg-surface/86 p-4 shadow-card sm:p-5">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <section className="grid gap-10 py-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-12">
+          <div>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange">
-                  Property operations
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-navy">
-                  Guide inventory
+                <h2 className="text-2xl font-semibold tracking-[-0.035em] text-navy">
+                  Property guides
                 </h2>
+                <p className="mt-2 max-w-xl text-sm leading-6 text-muted">
+                  Review guest guide coverage and open any property guide.
+                </p>
               </div>
-              <p className="max-w-sm text-sm leading-6 text-muted">
-                Each row represents a property with operational data,
-                reservation context, and a local guide ready for guests.
-              </p>
             </div>
 
-            <div className="mt-5 grid gap-3">
+            <div className="mt-5 border-y border-line">
               {propertyCatalog.map((property) => (
                 <Link
                   href={`/${property.code}`}
                   key={property.code}
-                  className="grid gap-3 rounded-panel border border-line bg-surface/92 p-3 shadow-card transition hover:-translate-y-0.5 hover:border-coral/60 hover:bg-fog sm:grid-cols-[6rem_minmax(0,1fr)_auto] sm:items-center sm:p-4"
+                  className="group grid gap-3 border-b border-line py-4 transition last:border-b-0 hover:bg-surface/58 sm:grid-cols-[5.5rem_minmax(0,1fr)_auto] sm:items-center"
                 >
                   <div className="relative h-20 overflow-hidden rounded-field bg-mist sm:h-16">
                     <Image
@@ -157,45 +149,40 @@ export default function OperatorDashboardPage() {
                       <p className="font-semibold tracking-[-0.01em] text-navy">
                         {property.name}
                       </p>
-                      <span className="rounded-full bg-coral-soft px-2 py-0.5 text-[11px] font-semibold text-coral">
+                      <span className="text-xs font-semibold text-coral">
                         {property.code}
                       </span>
                     </div>
                     <p className="mt-1 text-sm leading-5 text-muted">
                       {property.address.neighborhood}, {property.address.city} · {property.typeLabel}
                     </p>
-                    <div className="mt-2 flex flex-wrap gap-1.5 text-[11px] font-semibold">
-                      <span className="rounded-full bg-coral-soft px-2 py-0.5 text-coral">
-                        {property.guestCapacity} guests
-                      </span>
-                      <span className="rounded-full bg-fog px-2 py-0.5 text-navy">
-                        {property.bedroomQuantity} bed{property.bedroomQuantity > 1 ? "s" : ""}
-                      </span>
-                      <span className="rounded-full bg-positive-soft px-2 py-0.5 text-positive">
-                        Guide ready
-                      </span>
-                      <span className="rounded-full bg-fog px-2 py-0.5 text-muted">
-                        {property.operational.has_parking_spot ? "Parking" : "No parking"}
-                      </span>
-                    </div>
+                    <p className="mt-2 text-xs font-semibold text-muted">
+                      {property.guestCapacity} guests · {property.bedroomQuantity} bed{property.bedroomQuantity > 1 ? "s" : ""} · {property.operational.has_parking_spot ? "Parking" : "No parking"}
+                    </p>
                   </div>
 
-                  <span className="inline-flex w-fit rounded-full border border-line bg-surface/90 px-3 py-1 text-xs font-semibold text-navy">
-                    Open guide
-                  </span>
+                  <div className="flex items-center gap-3 sm:justify-end">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-positive">
+                      <CheckCircle2 className="h-3.5 w-3.5" aria-hidden />
+                      Guide ready
+                    </span>
+                    <span className="text-xs font-semibold text-navy underline-offset-4 group-hover:underline">
+                      Open
+                    </span>
+                  </div>
                 </Link>
               ))}
             </div>
           </div>
 
-          <aside className="space-y-5">
-            <section className="rounded-card border border-line bg-surface/86 p-5 shadow-card">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange">
+          <aside>
+            <section>
+              <h2 className="text-xl font-semibold tracking-[-0.035em] text-navy">
                 Markets
-              </p>
-              <ul className="mt-4 space-y-3">
+              </h2>
+              <ul className="mt-4 border-y border-line">
                 {topMarkets.map((market) => (
-                  <li key={market.market} className="flex items-center justify-between gap-3">
+                  <li key={market.market} className="flex items-center justify-between gap-3 border-b border-line py-3 last:border-b-0">
                     <div>
                       <p className="flex items-center gap-2 font-semibold text-navy">
                         <MapPin className="h-4 w-4 text-coral" aria-hidden />
@@ -203,7 +190,7 @@ export default function OperatorDashboardPage() {
                       </p>
                       <p className="text-sm text-muted">{market.currency}</p>
                     </div>
-                    <span className="rounded-full bg-fog px-3 py-1 text-xs font-semibold text-navy">
+                    <span className="text-xs font-semibold text-muted">
                       {market.properties} {market.properties > 1 ? "properties" : "property"}
                     </span>
                   </li>
