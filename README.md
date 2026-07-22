@@ -26,6 +26,8 @@ The AI assistant uses the property, reservation and local-guide context availabl
 - Guest questions are answered using only the context available for that property and stay.
 - Deterministic fallbacks keep essential support working when AI generation is unavailable.
 
+![Hosthing property guest guide](public/guest-guide-macos-readme-window.png)
+
 ## Built with
 
 **Frontend:** Next.js, React, TypeScript and Tailwind CSS  
